@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 int levelNo = jsonObject.getInt("level_no");
                 int unlockPoints = jsonObject.getInt("unlock_points");
 
+
+
                 JSONArray questionsArray = jsonObject.getJSONArray("questions");
                 for (int j = 0; j < questionsArray.length(); j++) {
                     JSONObject jsonObject1 = new JSONObject(questionsArray.get(j).toString());
