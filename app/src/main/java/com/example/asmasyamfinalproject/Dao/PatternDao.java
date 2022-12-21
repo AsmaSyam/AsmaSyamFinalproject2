@@ -6,18 +6,18 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.asmasyamfinalproject.Class.DataOfUsers;
-import com.example.asmasyamfinalproject.Class.QuestionData;
+import com.example.asmasyamfinalproject.Class.Pattern;
 
 import java.util.List;
 
 @Dao
-public interface UsersDao {
+public interface PatternDao {
 
     @Insert
-    void insertUsersData(DataOfUsers dataOfUsers);
+    void insertPatternData(Pattern pattern);
 
 
-    @Query("select * from DataOfUsers")
-    LiveData<List<DataOfUsers>> getALlUsers();
+    @Query("select * from pattern")
+    LiveData<List<Pattern>> getALlPattern();
 
 }

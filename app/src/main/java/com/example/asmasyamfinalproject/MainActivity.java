@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
             JSONArray jsonArray = new JSONArray(string);
 
-            ArrayList<DataOfLevel> arrayList = new ArrayList<>();
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());

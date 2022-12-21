@@ -4,15 +4,13 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import com.example.asmasyamfinalproject.Class.DataOfLevel;
-
 
 @Entity(foreignKeys = {@ForeignKey(entity = DataOfLevel.class ,
 parentColumns = "id" , childColumns ="levelNo" ,
 onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class QuestionData {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     int id ;
     String title ;
     String answer1 ;
@@ -22,8 +20,9 @@ public class QuestionData {
     String trueAnswer ;
     int points ;
     int duration ;
-   // Pattern pattern ;
+    Pattern pattern ;
     String hint ;
+
     int levelNo ;
 
 
@@ -98,6 +97,14 @@ public class QuestionData {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public Pattern getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(Pattern pattern) {
+        this.pattern = pattern;
     }
 
     public String getHint() {

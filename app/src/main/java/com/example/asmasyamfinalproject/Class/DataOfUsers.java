@@ -10,7 +10,7 @@ import java.util.Date;
 @TypeConverters({DataConverter.class})
 public class DataOfUsers {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     int usersId ;
 
     String userName ;
@@ -19,7 +19,8 @@ public class DataOfUsers {
     String gender ;
     String country ;
 
-    public DataOfUsers(String userName, String email, Date dateOfBirth, String gender, String country) {
+    public DataOfUsers(int usersId ,String userName, String email, Date dateOfBirth, String gender, String country) {
+        this.usersId = usersId ;
         this.userName = userName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;

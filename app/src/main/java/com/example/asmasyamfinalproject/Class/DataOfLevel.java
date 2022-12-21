@@ -11,15 +11,16 @@ parentColumns = "levelNo" , childColumns = "usersId" ,
 onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class DataOfLevel {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     int levelNo ;
     int unlockPoints ;
+
     int usersId ;
 
     ArrayList<QuestionData> questions ;
 
 
-    public DataOfLevel(int unlockPoints, ArrayList<QuestionData> questions) {
+    public DataOfLevel(int levelNo, int unlockPoints, ArrayList<QuestionData> questions) {
         this.levelNo = levelNo;
         this.unlockPoints = unlockPoints;
         this.questions = questions;
