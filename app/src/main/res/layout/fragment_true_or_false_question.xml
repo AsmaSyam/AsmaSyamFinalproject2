@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.TrueOrFalseQuestion">
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/images__1_" />
+
+    <TextView
+        android:id="@+id/answer"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#F3AB42"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/trueAnswer"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#15DD1D"
+        android:text="True"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/answer" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/falseAnswer"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#EA1B1B"
+        android:text="False"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/answer" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/_a4130c1c186f0f470b1827855886c9f"
+        tools:layout_editor_absoluteX="٨٧dp"
+        tools:layout_editor_absoluteY="١٤dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

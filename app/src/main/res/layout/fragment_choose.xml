@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.ChooseFragment">
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/images__1_" />
+
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#F3AB42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"
+        android:textSize="25sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_answer1"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#F3AB42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_question"
+        android:textColor="@color/white"
+        android:textSize="25sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_answer2"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#F3AB42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_answer1"
+        android:textColor="@color/white"
+        android:textSize="25sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_answer3"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#F3AB42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_answer2"
+        android:textColor="@color/white"
+        android:textSize="25sp"/>
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/_a4130c1c186f0f470b1827855886c9f"
+       />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
