@@ -1,10 +1,15 @@
 package com.example.asmasyamfinalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
 import com.example.asmasyamfinalproject.Class.DataOfLevel;
+import com.example.asmasyamfinalproject.Class.GameViewModule;
+import com.example.asmasyamfinalproject.Class.Pattern;
+import com.example.asmasyamfinalproject.Class.QuestionData;
+import com.example.asmasyamfinalproject.databinding.ActivityMainBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,15 +21,25 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    ActivityMainBinding binding ;
+    GameViewModule module ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        module = new ViewModelProvider(this).get(GameViewModule.class);
+
 
 
         String fileName = readFromAssets("jsonData.json");
 
         parseTheJson(fileName);
+
+
 
     }
 
@@ -34,15 +49,20 @@ public class MainActivity extends AppCompatActivity {
 
             JSONArray jsonArray = new JSONArray(string);
 
+            ArrayList<DataOfLevel> dataOfLevelArrayList = new ArrayList<>();
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
                 int levelNo = jsonObject.getInt("level_no");
                 int unlockPoints = jsonObject.getInt("unlock_points");
 
-
+                DataOfLevel dataOfLevel = new DataOfLevel();
+                dataOfLevel.setLevelNo(levelNo);
+                dataOfLevel.setUnlockPoints(unlockPoints);
 
                 JSONArray questionsArray = jsonObject.getJSONArray("questions");
+
+                ArrayList<QuestionData> questionDataArrayList = new ArrayList<>();
                 for (int j = 0; j < questionsArray.length(); j++) {
                     JSONObject jsonObject1 = new JSONObject(questionsArray.get(j).toString());
                     int id = jsonObject1.getInt("id");
@@ -59,9 +79,34 @@ public class MainActivity extends AppCompatActivity {
                     int patternId = patternClass.getInt("pattern_id");
                     String patternName = patternClass.getString("pattern_name");
 
+                    Pattern pattern = new Pattern();
+                    pattern.setPatternId(patternId);
+                    pattern.setPatternName(patternName);
+
                     String hint = jsonObject1.getString("hint");
+
+
+
+                    QuestionData questionData = new QuestionData();
+                    questionData.setId(id);
+                    questionData.setTitle(title);
+                    questionData.setAnswer1(answer1);
+                    questionData.setAnswer2(answer2);
+                    questionData.setAnswer3(answer3);
+                    questionData.setAnswer4(answer4);
+                    questionData.setTrueAnswer(trueAnswer);
+                    questionData.setPoints(points);
+                    questionData.setDuration(duration);
+                    questionData.setPattern(pattern);
+                    questionData.setHint(hint);
+
+                    questionDataArrayList.add(questionData);
+
+                    dataOfLevel.setQuestions(questionDataArrayList);
+
                 }
 
+                dataOfLevelArrayList.add(dataOfLevel);
             }
         } catch (JSONException e) {
             e.printStackTrace();
