@@ -17,13 +17,10 @@ public class DataOfLevel {
 
     int usersId ;
 
-    ArrayList<QuestionData> questions ;
 
-
-    public DataOfLevel(int levelNo, int unlockPoints, ArrayList<QuestionData> questions) {
+    public DataOfLevel(int levelNo, int unlockPoints) {
         this.levelNo = levelNo;
         this.unlockPoints = unlockPoints;
-        this.questions = questions;
     }
 
     public DataOfLevel() {
@@ -44,14 +41,6 @@ public class DataOfLevel {
 
     public void setUnlockPoints(int unlockPoints) {
         this.unlockPoints = unlockPoints;
-    }
-
-    public ArrayList<QuestionData> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(ArrayList<QuestionData> questions) {
-        this.questions = questions;
     }
 }
 
