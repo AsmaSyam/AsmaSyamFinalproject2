@@ -17,11 +17,6 @@ public class DataOfLevel {
     int usersId ;
 
 
-    public DataOfLevel(int levelNo, int unlockPoints) {
-        this.levelNo = levelNo;
-        this.unlockPoints = unlockPoints;
-    }
-
     public DataOfLevel() {
 
     }

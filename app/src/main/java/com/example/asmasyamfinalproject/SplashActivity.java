@@ -63,7 +63,6 @@ public class SplashActivity extends AppCompatActivity {
 
             JSONArray jsonArray = new JSONArray(string);
 
-            ArrayList<DataOfLevel> dataOfLevelArrayList = new ArrayList<>();
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
@@ -73,6 +72,8 @@ public class SplashActivity extends AppCompatActivity {
                 DataOfLevel dataOfLevel = new DataOfLevel();
                 dataOfLevel.setLevelNo(levelNo);
                 dataOfLevel.setUnlockPoints(unlockPoints);
+
+                module.insertLevelData(dataOfLevel);
 
                 JSONArray questionsArray = jsonObject.getJSONArray("questions");
 
@@ -96,6 +97,8 @@ public class SplashActivity extends AppCompatActivity {
                     pattern.setPatternId(patternId);
                     pattern.setPatternName(patternName);
 
+                    module.insertPatternData(pattern);
+
                     String hint = jsonObject1.getString("hint");
 
 
@@ -113,10 +116,11 @@ public class SplashActivity extends AppCompatActivity {
                     questionData.setPatternId(patternId);
                     questionData.setHint(hint);
 
+                    module.insertQuestionData(questionData);
+
 
                 }
 
-                dataOfLevelArrayList.add(dataOfLevel);
             }
         } catch (JSONException e) {
             e.printStackTrace();

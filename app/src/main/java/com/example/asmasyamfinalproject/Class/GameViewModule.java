@@ -25,7 +25,7 @@ public class GameViewModule extends AndroidViewModel {
          return repository.getAllLevel();
     }
 
-    void insertLevelData(DataOfLevel dataOfLevel){
+    public void insertLevelData(DataOfLevel dataOfLevel){
 
         repository.insertLevelData(dataOfLevel);
     }
@@ -37,7 +37,7 @@ public class GameViewModule extends AndroidViewModel {
     }
 
 
-    void insertQuestionData(QuestionData questionData){
+    public void insertQuestionData(QuestionData questionData){
 
         repository.insertQuestionData(questionData);
 
@@ -57,7 +57,7 @@ public class GameViewModule extends AndroidViewModel {
     }
 
 
-    void insertPatternData(Pattern pattern){
+    public void insertPatternData(Pattern pattern){
 
         repository.insertPatternData(pattern);
     }
