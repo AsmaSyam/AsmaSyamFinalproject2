@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
 
 @Entity(foreignKeys = {@ForeignKey(entity = DataOfUsers.class ,
 parentColumns = "levelNo" , childColumns = "usersId" ,

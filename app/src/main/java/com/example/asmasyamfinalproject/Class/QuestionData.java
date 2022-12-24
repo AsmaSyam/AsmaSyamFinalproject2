@@ -20,12 +20,18 @@ public class QuestionData {
     String trueAnswer ;
     int points ;
     int duration ;
-    Pattern pattern ;
+    int patternId ;
     String hint ;
 
     int levelNo ;
 
+    public int getPatternId() {
+        return patternId;
+    }
 
+    public void setPatternId(int patternId) {
+        this.patternId = patternId;
+    }
 
     public int getId() {
         return id;
@@ -97,14 +103,6 @@ public class QuestionData {
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public Pattern getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(Pattern pattern) {
-        this.pattern = pattern;
     }
 
     public String getHint() {

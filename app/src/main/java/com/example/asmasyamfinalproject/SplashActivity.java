@@ -10,7 +10,7 @@ import com.example.asmasyamfinalproject.Class.DataOfLevel;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.Class.Pattern;
 import com.example.asmasyamfinalproject.Class.QuestionData;
-import com.example.asmasyamfinalproject.databinding.ActivityMainBinding;
+import com.example.asmasyamfinalproject.databinding.ActivitySplashBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,15 +20,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding ;
+    ActivitySplashBinding binding ;
     GameViewModule module ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray questionsArray = jsonObject.getJSONArray("questions");
 
-                ArrayList<QuestionData> questionDataArrayList = new ArrayList<>();
                 for (int j = 0; j < questionsArray.length(); j++) {
                     JSONObject jsonObject1 = new JSONObject(questionsArray.get(j).toString());
                     int id = jsonObject1.getInt("id");
@@ -111,10 +110,8 @@ public class MainActivity extends AppCompatActivity {
                     questionData.setTrueAnswer(trueAnswer);
                     questionData.setPoints(points);
                     questionData.setDuration(duration);
-                    questionData.setPattern(pattern);
+                    questionData.setPatternId(patternId);
                     questionData.setHint(hint);
-
-                    questionDataArrayList.add(questionData);
 
 
                 }
