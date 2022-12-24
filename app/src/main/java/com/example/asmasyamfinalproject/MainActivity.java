@@ -3,6 +3,7 @@ package com.example.asmasyamfinalproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.asmasyamfinalproject.Class.DataOfLevel;
@@ -30,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < 10000; i++) {
+
+                    Intent intent = new Intent(getBaseContext() , HomeActivity.class);
+                }
+            }
+        });
+
+        thread.start();
 
         module = new ViewModelProvider(this).get(GameViewModule.class);
 
@@ -102,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
                     questionDataArrayList.add(questionData);
 
-                    dataOfLevel.setQuestions(questionDataArrayList);
 
                 }
 
