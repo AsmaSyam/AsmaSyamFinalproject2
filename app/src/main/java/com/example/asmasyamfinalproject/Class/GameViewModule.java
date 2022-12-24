@@ -20,7 +20,7 @@ public class GameViewModule extends AndroidViewModel {
 
 
 
-    LiveData<List<DataOfLevel>> getAllLevel(){
+    public LiveData<List<DataOfLevel>> getAllLevel(){
 
          return repository.getAllLevel();
     }
