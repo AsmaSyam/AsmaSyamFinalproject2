@@ -31,7 +31,7 @@ public class GameViewModule extends AndroidViewModel {
     }
 
 
-    LiveData<List<QuestionData>> getAllQuestions(){
+    public LiveData<List<QuestionData>> getAllQuestions(){
 
         return repository.getAllQuestions();
     }

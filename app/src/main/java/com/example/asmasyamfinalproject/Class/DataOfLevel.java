@@ -37,5 +37,3 @@ public class DataOfLevel {
         this.unlockPoints = unlockPoints;
     }
 }
-
-

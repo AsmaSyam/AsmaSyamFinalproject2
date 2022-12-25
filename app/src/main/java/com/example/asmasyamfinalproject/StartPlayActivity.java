@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.asmasyamfinalproject.Class.AdapterClass;
 import com.example.asmasyamfinalproject.Class.DataOfLevel;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
-import com.example.asmasyamfinalproject.databinding.ActivitySplashBinding;
 import com.example.asmasyamfinalproject.databinding.ActivityStartPlayBinding;
 
 import java.util.ArrayList;

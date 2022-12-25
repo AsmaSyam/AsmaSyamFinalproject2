@@ -17,7 +17,7 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:background="@drawable/shape_style"
         android:backgroundTint="#F3AB42"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:layout_width="230dp"
         android:layout_height="60dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/shape_style"
         android:backgroundTint="#F3AB42"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +61,19 @@
         android:backgroundTint="#F3AB42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_answer2"
+        android:textColor="@color/white"
+        android:textSize="25sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_answer4"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_style"
+        android:backgroundTint="#F3AB42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_answer3"
         android:textColor="@color/white"
         android:textSize="25sp"/>
 
