@@ -4,8 +4,7 @@ package com.example.asmasyamfinalproject.Class;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Insert;
-import androidx.room.Query;
+
 
 import com.example.asmasyamfinalproject.Dao.LevelDao;
 import com.example.asmasyamfinalproject.Dao.PatternDao;

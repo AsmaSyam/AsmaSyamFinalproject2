@@ -5,7 +5,6 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import com.example.asmasyamfinalproject.Class.QuestionData;
 
 @Entity(foreignKeys = {@ForeignKey(entity = QuestionData.class ,
 parentColumns = "id" , childColumns = "patternId",
