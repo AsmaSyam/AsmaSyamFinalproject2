@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity(foreignKeys = {@ForeignKey(entity = DataOfLevel.class ,
-parentColumns = "id" , childColumns ="levelNo" ,
+parentColumns = "levelNo" , childColumns ="id" ,
 onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class QuestionData {
 
@@ -23,7 +23,7 @@ public class QuestionData {
     int patternId ;
     String hint ;
 
-    int levelNo ;
+    public int levelNo ;
 
     public int getPatternId() {
         return patternId;

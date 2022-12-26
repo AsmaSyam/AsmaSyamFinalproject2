@@ -6,27 +6,226 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/images__1_" />
+
     <EditText
+        android:id="@+id/userName"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:id="@+id/userName"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/shape_to_profile"
+        android:hint="   User Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_to_profile"
+        android:hint="   Your Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userName" />
+
+    <EditText
+        android:id="@+id/dateOfBirth"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_to_profile"
+        android:hint="   Date Of Birth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email" />
+
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateOfBirth"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_to_profile"
+            android:checked="false"
+            android:text="  Male    "
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_to_profile"
+            android:checked="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:text="   Female  "
+            android:textSize="20dp" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/countries_spinner"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_to_profile"
+        android:entries="@array/countries_array"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="100dp"
-        android:hint="User Name"
-        />
+        app:srcCompat="@drawable/_a4130c1c186f0f470b1827855886c9f" />
 
-    <EditText
-        android:layout_width="250dp"
+    <LinearLayout
+        android:id="@+id/linearScore"
+        android:layout_width="370dp"
         android:layout_height="50dp"
-        android:id="@+id/Email"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userName"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:hint="Your Email"
-        />
+        app:layout_constraintTop_toBottomOf="@id/countries_spinner"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        >
 
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:text="Score"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="125dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearGameCount"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearScore"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="Game Count"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+
+            android:background="@drawable/shape_to_profile" />
+
+        <TextView
+            android:id="@+id/gameCount"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="95dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearRightCount"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearGameCount"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:text="Right Game Count"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/rightGameCount"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearRightCount"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:text="Wrong Game Count"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/wrongGameCount"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/shape_to_profile"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

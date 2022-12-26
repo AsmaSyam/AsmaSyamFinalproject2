@@ -2,4 +2,12 @@
     <string name="app_name">Asma Syam Final project</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="countries_array">
+        <item>Palestine</item>
+        <item>Egypt</item>
+        <item>Lebanon</item>
+        <item>Jordon</item>
+    </string-array>
+
 </resources>

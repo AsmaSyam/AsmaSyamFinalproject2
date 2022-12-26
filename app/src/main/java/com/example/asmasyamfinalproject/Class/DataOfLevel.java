@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity(foreignKeys = {@ForeignKey(entity = DataOfUsers.class ,
-parentColumns = "levelNo" , childColumns = "usersId" ,
+parentColumns = "usersId" , childColumns = "levelNo" ,
 onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class DataOfLevel {
 
@@ -14,7 +14,7 @@ public class DataOfLevel {
     int levelNo ;
     int unlockPoints ;
 
-    int usersId ;
+   public int usersId ;
 
 
     public DataOfLevel() {
@@ -37,3 +37,5 @@ public class DataOfLevel {
         this.unlockPoints = unlockPoints;
     }
 }
+
+

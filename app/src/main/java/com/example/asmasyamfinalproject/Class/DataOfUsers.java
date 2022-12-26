@@ -19,14 +19,12 @@ public class DataOfUsers {
     String gender ;
     String country ;
 
-    public DataOfUsers(int usersId ,String userName, String email, Date dateOfBirth, String gender, String country) {
-        this.usersId = usersId ;
-        this.userName = userName;
-        this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.country = country;
-    }
+    int score ;
+    int countGame ;
+    int rightGameCount ;
+    int wrongGameCount ;
+
+
 
     public int getUsersId() {
         return usersId;
@@ -74,5 +72,37 @@ public class DataOfUsers {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getCountGame() {
+        return countGame;
+    }
+
+    public void setCountGame(int countGame) {
+        this.countGame = countGame;
+    }
+
+    public int getRightGameCount() {
+        return rightGameCount;
+    }
+
+    public void setRightGameCount(int rightGameCount) {
+        this.rightGameCount = rightGameCount;
+    }
+
+    public int getWrongGameCount() {
+        return wrongGameCount;
+    }
+
+    public void setWrongGameCount(int wrongGameCount) {
+        this.wrongGameCount = wrongGameCount;
     }
 }

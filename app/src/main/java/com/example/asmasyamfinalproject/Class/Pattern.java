@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import com.example.asmasyamfinalproject.Class.QuestionData;
 
 @Entity(foreignKeys = {@ForeignKey(entity = QuestionData.class ,
-parentColumns = "patternId" , childColumns = "id",
+parentColumns = "id" , childColumns = "patternId",
 onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class Pattern {
 
@@ -16,7 +16,7 @@ public class Pattern {
     int patternId ;
     String patternName ;
 
-    int id ;
+    public int id ;
 
 
     public int getPatternId() {

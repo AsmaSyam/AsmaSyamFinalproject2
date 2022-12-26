@@ -50,7 +50,7 @@ public class GameViewModule extends AndroidViewModel {
         return repository.getALlUsers();
     }
 
-    void insertUsersData(DataOfUsers dataOfUsers){
+    public void insertUsersData(DataOfUsers dataOfUsers){
 
         repository.insertUsersData(dataOfUsers);
 
