@@ -38,7 +38,8 @@ public class Repository {
         GameDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                levelDao.insertLevelData(dataOfLevel);
+                levelDao.
+                        insertLevelData(dataOfLevel);
             }
         });
     }

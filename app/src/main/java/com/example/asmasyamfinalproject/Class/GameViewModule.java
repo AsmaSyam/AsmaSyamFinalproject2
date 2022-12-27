@@ -38,7 +38,6 @@ public class GameViewModule extends AndroidViewModel {
 
 
     public void insertQuestionData(QuestionData questionData){
-
         repository.insertQuestionData(questionData);
 
     }

@@ -5,9 +5,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 
-@Entity(foreignKeys = {@ForeignKey(entity = DataOfUsers.class ,
-parentColumns = "usersId" , childColumns = "levelNo" ,
-onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
+@Entity
 public class DataOfLevel {
 
     @PrimaryKey

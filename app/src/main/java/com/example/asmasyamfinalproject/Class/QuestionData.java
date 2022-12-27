@@ -6,8 +6,11 @@ import androidx.room.PrimaryKey;
 
 
 @Entity(foreignKeys = {@ForeignKey(entity = DataOfLevel.class ,
-parentColumns = "levelNo" , childColumns ="id" ,
-onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
+parentColumns = "levelNo" , childColumns ="levelNo" ,
+onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE),
+        @ForeignKey(entity = Pattern.class ,
+                parentColumns = "patternId" , childColumns ="patternId" ,
+                onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class QuestionData {
 
     @PrimaryKey
