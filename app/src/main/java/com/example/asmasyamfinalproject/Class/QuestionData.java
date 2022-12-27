@@ -13,7 +13,7 @@ onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE),
                 onDelete = ForeignKey.CASCADE , onUpdate = ForeignKey.CASCADE)})
 public class QuestionData {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id ;
     String title ;
     String answer1 ;
@@ -25,8 +25,29 @@ public class QuestionData {
     int duration ;
     int patternId ;
     String hint ;
-
     public int levelNo ;
+
+    public QuestionData(String title, String answer1, String answer2, String answer3, String answer4, String trueAnswer, int points, int duration, int patternId, String hint, int levelNo) {
+        this.title = title;
+        this.answer1 = answer1;
+        this.answer2 = answer2;
+        this.answer3 = answer3;
+        this.answer4 = answer4;
+        this.trueAnswer = trueAnswer;
+        this.points = points;
+        this.duration = duration;
+        this.patternId = patternId;
+        this.hint = hint;
+        this.levelNo = levelNo;
+    }
+
+    public int getLevelNo() {
+        return levelNo;
+    }
+
+    public void setLevelNo(int levelNo) {
+        this.levelNo = levelNo;
+    }
 
     public int getPatternId() {
         return patternId;

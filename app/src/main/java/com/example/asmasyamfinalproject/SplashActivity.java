@@ -37,31 +37,27 @@ public class SplashActivity extends AppCompatActivity {
        // if(first == false){
         //}
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                for (int i = 0; i < 10000; i++) {
-
-                    Intent intent = new Intent(getBaseContext() , HomeActivity.class);
-                }
-            }
-        });
-
-        thread.start();
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                for (int i = 0; i < 10000; i++) {
+//
+//                    Intent intent = new Intent(getBaseContext() , HomeActivity.class);
+//                }
+//            }
+//        });
+//
+//        thread.start();
 
         module = new ViewModelProvider(this).get(GameViewModule.class);
 
-
-
         String fileName = readFromAssets("jsonData.json");
 
+        Log.d("levelTest", "onCreate: created");
+
         parseTheJson(fileName);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         parseTheJsonInsertQuestion(fileName);
 
 
@@ -84,7 +80,7 @@ public class SplashActivity extends AppCompatActivity {
                 dataOfLevel.setLevelNo(levelNo);
                 dataOfLevel.setUnlockPoints(unlockPoints);
 
-                Log.d("levelTest", "parseTheJson: "+levelNo + i);
+                Log.d("levelTest", "parseTheJson: "+levelNo +" : "+ i);
                 module.insertLevelData(dataOfLevel);
 
                 JSONArray questionsArray = jsonObject.getJSONArray("questions");
@@ -186,18 +182,19 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-                    QuestionData questionData = new QuestionData();
-                    questionData.setId(id);
-                    questionData.setTitle(title);
-                    questionData.setAnswer1(answer1);
-                    questionData.setAnswer2(answer2);
-                    questionData.setAnswer3(answer3);
-                    questionData.setAnswer4(answer4);
-                    questionData.setTrueAnswer(trueAnswer);
-                    questionData.setPoints(points);
-                    questionData.setDuration(duration);
-                    questionData.setPatternId(patternId);
-                    questionData.setHint(hint);
+                    QuestionData questionData = new QuestionData(title,answer1,answer2,answer3,answer4,
+                            trueAnswer,points,duration,patternId,hint,levelNo);
+//                    questionData.setId(id);
+//                    questionData.setTitle(title);
+//                    questionData.setAnswer1(answer1);
+//                    questionData.setAnswer2(answer2);
+//                    questionData.setAnswer3(answer3);
+//                    questionData.setAnswer4(answer4);
+//                    questionData.setTrueAnswer(trueAnswer);
+//                    questionData.setPoints(points);
+//                    questionData.setDuration(duration);
+//                    questionData.setPatternId(patternId);
+//                    questionData.setHint(hint);
 
                    module.insertQuestionData(questionData);
 
