@@ -54,54 +54,57 @@ public class GameLevels extends AppCompatActivity {
             public void onChanged(List<DataOfLevel> dataOfLevels) {
                 for (int i = 0; i < dataOfLevels.size(); i++) {
                      levelNo = dataOfLevels.get(i).getLevelNo();
+
+                    module.getAllQuestionsByLevelId(levelNo).observe(GameLevels.this, new Observer<List<QuestionData>>() {
+                        @Override
+                        public void onChanged(List<QuestionData> questionData) {
+                            arrayList = (ArrayList<QuestionData>) questionData;
+
+                            Log.d("levelNo", "onChanged: " + levelNo);
+                            Log.d("sizeArray", "onChanged: " + questionData.size());
+
+                            for (int i = 0; i < arrayList.size(); i++) {
+
+                                title = arrayList.get(i).getTitle();
+                                answer1 = arrayList.get(i).getAnswer1();
+                                answer2 = arrayList.get(i).getAnswer2();
+                                answer3 = arrayList.get(i).getAnswer3();
+                                answer4 = arrayList.get(i).getAnswer4();
+                                patternId = arrayList.get(i).getPatternId();
+
+
+
+                                if(patternId == 2){
+                                    fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2 , answer3 , answer4 , patternId));
+                                    Log.d("title", "onCreate: " +title);
+                                }
+                                else if(patternId == 3){
+                                    fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId));
+                                }
+
+                                else if(patternId == 1){
+                                    fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId));
+                                }
+
+                                QuestionAdapter adapter = new QuestionAdapter(GameLevels.this , fragmentArrayList);
+
+                                binding.viewPager.setAdapter(adapter);
+                                //  Log.d("title", "onChanged: " + title);
+                                // Log.d("answer1", "onChanged: " + answer1);
+                                // Log.d("answer2", "onChanged: " + answer2);
+                                //Log.d("answer3", "onChanged: " + answer3);
+                                //Log.d("patternId", "onChanged: " + patternId);
+                            }
+                        }
+
+                        //  Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+
+
+                    });
                 }
             }
         });
 
-        // åäÇ ÊÞÑíÈÇ ÑÍ ÇÚãá ÏÇáÉ ÊÇäíÉ
-        module.getAllQuestionsByLevelId(levelNo).observe(this, new Observer<List<QuestionData>>() {
-            @Override
-            public void onChanged(List<QuestionData> questionData) {
-                arrayList = (ArrayList<QuestionData>) questionData;
-                Log.d("levelNo", "onChanged: " + levelNo);
-                Log.d("sizeArray", "onChanged: " + questionData.size());
-                for (int i = 0; i < arrayList.size(); i++) {
 
-                    title = arrayList.get(i).getTitle();
-                    answer1 = arrayList.get(i).getAnswer1();
-                    answer2 = arrayList.get(i).getAnswer2();
-                    answer3 = arrayList.get(i).getAnswer3();
-                    answer4 = arrayList.get(i).getAnswer4();
-                    patternId = arrayList.get(i).getPatternId();
-
-
-
-                    if(patternId == 2){
-                        fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2 , answer3 , answer4 , patternId));
-                        Log.d("title", "onCreate: " +title);
-                    }
-                    else if(patternId == 3){
-                        fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId));
-                    }
-
-                    else if(patternId == 1){
-                        fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId));
-                    }
-
-                    QuestionAdapter adapter = new QuestionAdapter(GameLevels.this , fragmentArrayList);
-
-                    binding.viewPager.setAdapter(adapter);
-                    //  Log.d("title", "onChanged: " + title);
-                    // Log.d("answer1", "onChanged: " + answer1);
-                    // Log.d("answer2", "onChanged: " + answer2);
-                    //Log.d("answer3", "onChanged: " + answer3);
-                    //Log.d("patternId", "onChanged: " + patternId);
-            }
-        };
-
-      //  Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-
-
-        }
-        );}
+    }
 }
