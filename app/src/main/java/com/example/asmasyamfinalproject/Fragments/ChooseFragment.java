@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class ChooseFragment extends Fragment {
     private static final String ARG_PARAM3 = "answer2";
     private static final String ARG_PARAM4 = "answer3";
     private static final String ARG_PARAM5 = "answer4";
+    private static final String ARG_PARAM6 = "patternId";
 
     // TODO: Rename and change types of parameters
     private String question;
@@ -27,13 +29,14 @@ public class ChooseFragment extends Fragment {
     private String answer2;
     private String answer3;
     private String answer4;
+    private int patternId;
 
     public ChooseFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static ChooseFragment newInstance(String question, String answer1 , String answer2 , String answer3 , String answer4) {
+    public static ChooseFragment newInstance(String question, String answer1 , String answer2 , String answer3 , String answer4 , int patternId) {
         ChooseFragment fragment = new ChooseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, question);
@@ -41,6 +44,7 @@ public class ChooseFragment extends Fragment {
         args.putString(ARG_PARAM3, answer2);
         args.putString(ARG_PARAM4, answer3);
         args.putString(ARG_PARAM5, answer4);
+        args.putInt(ARG_PARAM6, patternId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,6 +58,9 @@ public class ChooseFragment extends Fragment {
             answer2 = getArguments().getString(ARG_PARAM3);
             answer3 = getArguments().getString(ARG_PARAM4);
             answer4 = getArguments().getString(ARG_PARAM5);
+            patternId = getArguments().getInt(ARG_PARAM6);
+
+            Log.d("question", "onCreate: " + question);
         }
     }
 

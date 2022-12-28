@@ -12,15 +12,16 @@ import com.example.asmasyamfinalproject.databinding.ActivityHomeBinding;
 public class HomeActivity extends AppCompatActivity {
 
     ActivityHomeBinding binding ;
+    MediaPlayer mediaPlayer ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound );
+         mediaPlayer = MediaPlayer.create(this, R.raw.sound );
         mediaPlayer.start();
-        //mediaPlayer.isLooping();
+        mediaPlayer.setLooping(true);
 
         binding.buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,15 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mediaPlayer.stop();
+        mediaPlayer.release();
 
     }
 }

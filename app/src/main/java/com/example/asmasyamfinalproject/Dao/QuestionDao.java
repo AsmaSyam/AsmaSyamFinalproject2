@@ -20,4 +20,7 @@ public interface QuestionDao {
     @Query("select * from QuestionData")
     LiveData<List<QuestionData>> getAllQuestions();
 
+    @Query("select * from QuestionData where levelNo = :levelNo")
+    LiveData<List<QuestionData>> getAllQuestionsByLevelId(int levelNo);
+
 }

@@ -27,7 +27,7 @@ public class TrueOrFalseQuestion extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static TrueOrFalseQuestion newInstance(String title) {
+    public static TrueOrFalseQuestion newInstance(String title , int patternId) {
         TrueOrFalseQuestion fragment = new TrueOrFalseQuestion();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, title);

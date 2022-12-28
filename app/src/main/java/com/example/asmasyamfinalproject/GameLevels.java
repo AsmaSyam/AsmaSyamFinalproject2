@@ -6,7 +6,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.asmasyamfinalproject.Class.DataOfLevel;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.Class.QuestionAdapter;
 import com.example.asmasyamfinalproject.Class.QuestionData;
@@ -32,19 +34,36 @@ public class GameLevels extends AppCompatActivity {
     String answer4 ;
     int patternId ;
 
+    int levelNo ;
+
+    ArrayList<Fragment> fragmentArrayList ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGamelevelsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+                          fragmentArrayList  = new ArrayList<>();
+
+
         module = new ViewModelProvider(this).get(GameViewModule.class);
-        module.getAllQuestions().observe(this, new Observer<List<QuestionData>>() {
+
+        module.getAllLevel().observe(this, new Observer<List<DataOfLevel>>() {
+            @Override
+            public void onChanged(List<DataOfLevel> dataOfLevels) {
+                for (int i = 0; i < dataOfLevels.size(); i++) {
+                     levelNo = dataOfLevels.get(i).getLevelNo();
+                }
+            }
+        });
+
+        module.getAllQuestionsByLevelId(levelNo).observe(this, new Observer<List<QuestionData>>() {
             @Override
             public void onChanged(List<QuestionData> questionData) {
-
                 arrayList = (ArrayList<QuestionData>) questionData;
-
+                Log.d("levelNo", "onChanged: " + levelNo);
+                Log.d("sizeArray", "onChanged: " + questionData.size());
                 for (int i = 0; i < arrayList.size(); i++) {
 
                     title = arrayList.get(i).getTitle();
@@ -53,30 +72,35 @@ public class GameLevels extends AppCompatActivity {
                     answer3 = arrayList.get(i).getAnswer3();
                     answer4 = arrayList.get(i).getAnswer4();
                     patternId = arrayList.get(i).getPatternId();
-                }
+
+
+
+                    if(patternId == 2){
+                        fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2 , answer3 , answer4 , patternId));
+                        Log.d("title", "onCreate: " +title);
+                    }
+                    else if(patternId == 3){
+                        fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId));
+                    }
+
+                    else if(patternId == 1){
+                        fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId));
+                    }
+
+                    QuestionAdapter adapter = new QuestionAdapter(GameLevels.this , fragmentArrayList);
+
+                    binding.viewPager.setAdapter(adapter);
+                    //  Log.d("title", "onChanged: " + title);
+                    // Log.d("answer1", "onChanged: " + answer1);
+                    // Log.d("answer2", "onChanged: " + answer2);
+                    //Log.d("answer3", "onChanged: " + answer3);
+                    //Log.d("patternId", "onChanged: " + patternId);
             }
-        });
+        };
 
       //  Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
 
 
-        ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
-
-       // if(patternId == 2){
-            fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2 , answer3 , answer4));
-       // }
-       // if(patternId == 3){
-            fragmentArrayList.add(Complete_Question_Fragment.newInstance(title));
-      //  }
-
-      //  if(patternId == 1){
-            fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title));
-     //   }
-
-        QuestionAdapter adapter = new QuestionAdapter(this , fragmentArrayList);
-
-        binding.viewPager.setAdapter(adapter);
-
-    }
-
+        }
+        );}
 }

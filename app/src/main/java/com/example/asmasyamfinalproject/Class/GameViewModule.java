@@ -36,6 +36,10 @@ public class GameViewModule extends AndroidViewModel {
         return repository.getAllQuestions();
     }
 
+    public LiveData<List<QuestionData>> getAllQuestionsByLevelId(int levelNo){
+        return repository.getAllQuestionsByLevelId(levelNo);
+    }
+
 
     public void insertQuestionData(QuestionData questionData){
         repository.insertQuestionData(questionData);

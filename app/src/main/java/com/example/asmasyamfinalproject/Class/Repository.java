@@ -4,6 +4,7 @@ package com.example.asmasyamfinalproject.Class;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 
 import com.example.asmasyamfinalproject.Dao.LevelDao;
@@ -47,6 +48,10 @@ public class Repository {
     LiveData<List<QuestionData>> getAllQuestions(){
 
         return questionDao.getAllQuestions();
+    }
+
+    LiveData<List<QuestionData>> getAllQuestionsByLevelId(int levelNo){
+        return questionDao.getAllQuestionsByLevelId(levelNo);
     }
 
     void insertQuestionData(QuestionData questionData){

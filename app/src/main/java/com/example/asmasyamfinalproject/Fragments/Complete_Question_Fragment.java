@@ -25,7 +25,7 @@ public class Complete_Question_Fragment extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static Complete_Question_Fragment newInstance(String title) {
+    public static Complete_Question_Fragment newInstance(String title ,int patternId) {
         Complete_Question_Fragment fragment = new Complete_Question_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, title);
