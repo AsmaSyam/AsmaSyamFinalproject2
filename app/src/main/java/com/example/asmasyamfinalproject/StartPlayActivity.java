@@ -15,12 +15,13 @@ import android.view.MenuItem;
 import com.example.asmasyamfinalproject.Class.AdapterClass;
 import com.example.asmasyamfinalproject.Class.DataOfLevel;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
+import com.example.asmasyamfinalproject.Class.Listener;
 import com.example.asmasyamfinalproject.databinding.ActivityStartPlayBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartPlayActivity extends AppCompatActivity {
+public class StartPlayActivity extends AppCompatActivity implements Listener {
 
     ActivityStartPlayBinding binding ;
     AdapterClass adapter ;
@@ -39,15 +40,18 @@ public class StartPlayActivity extends AppCompatActivity {
             public void onChanged(List<DataOfLevel> dataOfLevels) {
 
                 arrayList = (ArrayList<DataOfLevel>) dataOfLevels;
+
+                // «”„«¡ ·Ê ÕÿÌ  Â«Ì »—«  Õ  —Õ Ì«Œœ «·«—Ì Ì·Ì ›Êﬁ «·›«÷Ì…
+                adapter = new AdapterClass(arrayList , StartPlayActivity.this , StartPlayActivity.this);
+
+                binding.RecyclerView.setAdapter(adapter);
+                RecyclerView.LayoutManager lm = new LinearLayoutManager(StartPlayActivity.this , RecyclerView.VERTICAL ,
+                        false);
+                binding.RecyclerView.setLayoutManager(lm);
             }
         });
 
-        adapter = new AdapterClass(arrayList);
 
-        binding.RecyclerView.setAdapter(adapter);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(StartPlayActivity.this , RecyclerView.VERTICAL ,
-                false);
-        binding.RecyclerView.setLayoutManager(lm);
     }
 
     @Override
@@ -60,9 +64,15 @@ public class StartPlayActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.setting:
-                startActivity(new Intent(StartPlayActivity.this , SettingsActivity.class));
+                startActivity(new Intent(StartPlayActivity.this , ProfileActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void OnClick(int position) {
+
+        startActivity(new Intent(StartPlayActivity.this , GameLevels.class));
     }
 }

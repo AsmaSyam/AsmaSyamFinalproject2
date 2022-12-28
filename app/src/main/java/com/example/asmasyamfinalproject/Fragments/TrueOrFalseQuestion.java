@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.asmasyamfinalproject.R;
 import com.example.asmasyamfinalproject.databinding.FragmentChooseBinding;
+import com.example.asmasyamfinalproject.databinding.FragmentTrueOrFalseQuestionBinding;
 
 
 public class TrueOrFalseQuestion extends Fragment {
@@ -46,7 +47,7 @@ public class TrueOrFalseQuestion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FragmentChooseBinding binding = FragmentChooseBinding.inflate(inflater , container , false);
+        FragmentTrueOrFalseQuestionBinding binding = FragmentTrueOrFalseQuestionBinding.inflate(inflater , container , false);
 
         binding.textQuestion.setText(title);
 

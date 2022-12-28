@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
 
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound );
         mediaPlayer.start();
+        //mediaPlayer.isLooping();
 
         binding.buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override

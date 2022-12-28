@@ -13,7 +13,7 @@
         android:src="@drawable/images__1_" />
 
     <TextView
-        android:id="@+id/answer"
+        android:id="@+id/text_question"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="300dp"
@@ -37,7 +37,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/answer" />
+        app:layout_constraintTop_toBottomOf="@id/text_question" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/falseAnswer"
@@ -51,7 +51,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/answer" />
+        app:layout_constraintTop_toBottomOf="@id/text_question" />
 
     <ImageView
         android:id="@+id/imageView14"

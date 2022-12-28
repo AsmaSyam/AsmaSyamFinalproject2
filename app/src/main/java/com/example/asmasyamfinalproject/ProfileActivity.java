@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.databinding.ActivityProfileBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.util.Calendar;
 
@@ -28,15 +29,16 @@ public class ProfileActivity extends AppCompatActivity {
 
        // module.insertUsersData();
 
-       /* binding.dateOfBirth.setOnClickListener(new View.OnClickListener() {
+        binding.dateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar mCalendar = Calendar.getInstance();
-                int year = mCalendar.get(Calendar.YEAR);
-                int month = mCalendar.get(Calendar.MONTH);
-                int dayOfMonth = mCalendar.get(Calendar.DAY_OF_MONTH);
-                binding.dateOfBirth.setText(dayOfMonth + "/" + (month+1) + "/" + year);
+
+                MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+
+                builder.build().show(getSupportFragmentManager() , "");
+
+
             }
-        });*/
+        });
     }
 }

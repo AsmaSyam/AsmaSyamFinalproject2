@@ -45,31 +45,33 @@ public class GameLevels extends AppCompatActivity {
 
                 arrayList = (ArrayList<QuestionData>) questionData;
 
+                for (int i = 0; i < arrayList.size(); i++) {
+
+                    title = arrayList.get(i).getTitle();
+                    answer1 = arrayList.get(i).getAnswer1();
+                    answer2 = arrayList.get(i).getAnswer2();
+                    answer3 = arrayList.get(i).getAnswer3();
+                    answer4 = arrayList.get(i).getAnswer4();
+                    patternId = arrayList.get(i).getPatternId();
+                }
             }
         });
 
-        for (int i = 0; i < arrayList.size(); i++) {
+      //  Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
 
-             title = arrayList.get(i).getTitle();
-             answer1 = arrayList.get(i).getAnswer1();
-             answer2 = arrayList.get(i).getAnswer2();
-             answer3 = arrayList.get(i).getAnswer3();
-             answer4 = arrayList.get(i).getAnswer4();
-             patternId = arrayList.get(i).getPatternId();
-        }
 
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
 
-        if(patternId == 2){
+       // if(patternId == 2){
             fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2 , answer3 , answer4));
-        }
-        if(patternId == 3){
+       // }
+       // if(patternId == 3){
             fragmentArrayList.add(Complete_Question_Fragment.newInstance(title));
-        }
+      //  }
 
-        if(patternId == 1){
+      //  if(patternId == 1){
             fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title));
-        }
+     //   }
 
         QuestionAdapter adapter = new QuestionAdapter(this , fragmentArrayList);
 

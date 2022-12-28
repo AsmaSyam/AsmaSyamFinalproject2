@@ -8,8 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.asmasyamfinalproject.R;
-import com.example.asmasyamfinalproject.databinding.FragmentChooseBinding;
+import com.example.asmasyamfinalproject.databinding.FragmentCompleteQuestionBinding;
 
 
 public class Complete_Question_Fragment extends Fragment {
@@ -47,7 +46,7 @@ public class Complete_Question_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        FragmentChooseBinding binding = FragmentChooseBinding.inflate(inflater , container , false);
+        FragmentCompleteQuestionBinding binding = FragmentCompleteQuestionBinding.inflate(inflater , container , false);
 
         binding.textQuestion.setText(title);
 

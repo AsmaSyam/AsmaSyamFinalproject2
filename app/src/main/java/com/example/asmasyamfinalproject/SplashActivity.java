@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.example.asmasyamfinalproject.Class.DataOfLevel;
@@ -37,18 +38,14 @@ public class SplashActivity extends AppCompatActivity {
        // if(first == false){
         //}
 
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                for (int i = 0; i < 10000; i++) {
-//
-//                    Intent intent = new Intent(getBaseContext() , HomeActivity.class);
-//                }
-//            }
-//        });
-//
-//        thread.start();
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this , HomeActivity.class));
+                finish();
+            }
+        }, 2000);
+
 
         module = new ViewModelProvider(this).get(GameViewModule.class);
 
