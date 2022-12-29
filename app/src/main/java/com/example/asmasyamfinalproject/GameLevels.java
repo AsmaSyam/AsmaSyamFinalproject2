@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -25,7 +26,7 @@ public class GameLevels extends AppCompatActivity {
     ActivityGamelevelsBinding binding ;
     GameViewModule module ;
 
-    ArrayList<QuestionData> arrayList ;
+    //ArrayList<QuestionData> arrayList ;
 
     String title ;
     String answer1 ;
@@ -44,34 +45,33 @@ public class GameLevels extends AppCompatActivity {
         binding = ActivityGamelevelsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-                          fragmentArrayList  = new ArrayList<>();
+        fragmentArrayList  = new ArrayList<>();
+
+        Intent intent = getIntent();
+        levelNo = intent.getIntExtra("levelNo" ,0 );
 
 
         module = new ViewModelProvider(this).get(GameViewModule.class);
 
-        module.getAllLevel().observe(this, new Observer<List<DataOfLevel>>() {
-            @Override
-            public void onChanged(List<DataOfLevel> dataOfLevels) {
-                for (int i = 0; i < dataOfLevels.size(); i++) {
-                     levelNo = dataOfLevels.get(i).getLevelNo();
-                }
 
                 module.getAllQuestionsByLevelId(levelNo).observe(GameLevels.this, new Observer<List<QuestionData>>() {
                     @Override
                     public void onChanged(List<QuestionData> questionData) {
-                        arrayList = (ArrayList<QuestionData>) questionData;
+//                        arrayList = (ArrayList<QuestionData>) questionData;
 
                         Log.d("levelNo", "onChanged: " + levelNo);
                         Log.d("sizeArray", "onChanged: " + questionData.size());
 
-                        for (int i = 0; i < arrayList.size(); i++) {
+                        for (int i = 0; i < questionData.size(); i++) {
+                            Log.d("questionsTest", "onChanged: "+questionData.get(i).getId()+" : "+
+                                    questionData.get(i).getTitle()+" : "+questionData.get(i).getLevelNo());
 
-                            title = arrayList.get(i).getTitle();
-                            answer1 = arrayList.get(i).getAnswer1();
-                            answer2 = arrayList.get(i).getAnswer2();
-                            answer3 = arrayList.get(i).getAnswer3();
-                            answer4 = arrayList.get(i).getAnswer4();
-                            patternId = arrayList.get(i).getPatternId();
+                            title = questionData.get(i).getTitle();
+                            answer1 = questionData.get(i).getAnswer1();
+                            answer2 = questionData.get(i).getAnswer2();
+                            answer3 = questionData.get(i).getAnswer3();
+                            answer4 = questionData.get(i).getAnswer4();
+                            patternId = questionData.get(i).getPatternId();
 
                             Log.d("title", "onChanged: " + title);
                             Log.d("answer1", "onChanged: " + answer1);
@@ -109,8 +109,7 @@ public class GameLevels extends AppCompatActivity {
 
                 });
             }
-        });
+
 
 
     }
-}

@@ -41,7 +41,6 @@ public class StartPlayActivity extends AppCompatActivity implements Listener {
 
                 arrayList = (ArrayList<DataOfLevel>) dataOfLevels;
 
-                // «”„«¡ ·Ê ÕÿÌ  Â«Ì »—«  Õ  —Õ Ì«Œœ «·«—Ì Ì·Ì ›Êﬁ «·›«÷Ì…
                 adapter = new AdapterClass(arrayList , StartPlayActivity.this , StartPlayActivity.this);
 
                 binding.RecyclerView.setAdapter(adapter);
@@ -73,6 +72,9 @@ public class StartPlayActivity extends AppCompatActivity implements Listener {
     @Override
     public void OnClick(int position) {
 
-        startActivity(new Intent(StartPlayActivity.this , GameLevels.class));
+        int levelNo = arrayList.get(position).getLevelNo();
+        Intent intent = new Intent(StartPlayActivity.this , GameLevels.class );
+        intent.putExtra("levelNo" , levelNo);
+        startActivity(intent);
     }
 }
