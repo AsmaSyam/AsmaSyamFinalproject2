@@ -65,14 +65,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+   /* @Override
+    protected void onPause() {
+        super.onPause();
 
         mediaPlayer.stop();
         mediaPlayer.release();
-
-    }
+    }*/
 }
