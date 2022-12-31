@@ -5,7 +5,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.room.Insert;
 
+import java.util.Date;
 import java.util.List;
 
 public class GameViewModule extends AndroidViewModel {
@@ -48,7 +50,7 @@ public class GameViewModule extends AndroidViewModel {
 
 
 
-    LiveData<List<DataOfUsers>> getALlUsers(){
+    public LiveData<List<DataOfUsers>> getALlUsers(){
 
         return repository.getALlUsers();
     }

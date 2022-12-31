@@ -24,7 +24,24 @@ public class DataOfUsers {
     int rightGameCount ;
     int wrongGameCount ;
 
+    public DataOfUsers(int usersId, String userName, String email,
+                       Date dateOfBirth, String gender, String country, int score, int countGame,
+                       int rightGameCount, int wrongGameCount) {
+        this.usersId = usersId;
+        this.userName = userName;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.country = country;
+        this.score = score;
+        this.countGame = countGame;
+        this.rightGameCount = rightGameCount;
+        this.wrongGameCount = wrongGameCount;
+    }
 
+    public DataOfUsers() {
+
+    }
 
     public int getUsersId() {
         return usersId;

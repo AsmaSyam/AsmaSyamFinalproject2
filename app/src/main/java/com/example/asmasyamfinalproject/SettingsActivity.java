@@ -30,10 +30,11 @@ public class SettingsActivity extends AppCompatActivity {
         JobInfo info = null ;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             info = new JobInfo.Builder(100 , componentName)
-                    .setPeriodic(24*60*60*1000 , 5*60*1000)
+                    .setPeriodic(15*60*1000 , 5*60*1000)
                     .build();
         }
 
+        //24*60*60*1000
         JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         scheduler.schedule(info);
 
@@ -63,11 +64,11 @@ public class SettingsActivity extends AppCompatActivity {
 
                 if (isNotificationActivation){
                     // هنا رح اكتب كود ايقاف تفعيل الاشعارات
-                    binding.buttonVoiceActivation.setText("The notification is not activated");
+                    binding.buttonNotificationActivation.setText("The notification is not activated");
                     isNotificationActivation = false ;
                 }else {
                     // هنا رح اكتب كود اعادة تفعيل الاشعارات
-                    binding.buttonVoiceActivation.setText("Notification Activation");
+                    binding.buttonNotificationActivation.setText("Notification Activation");
                     isNotificationActivation = true ;
                 }
             }

@@ -4,6 +4,7 @@ package com.example.asmasyamfinalproject.Class;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 
@@ -12,6 +13,7 @@ import com.example.asmasyamfinalproject.Dao.PatternDao;
 import com.example.asmasyamfinalproject.Dao.QuestionDao;
 import com.example.asmasyamfinalproject.Dao.UsersDao;
 
+import java.util.Date;
 import java.util.List;
 
 public class Repository {
@@ -80,6 +82,7 @@ public class Repository {
             }
         });
     }
+
 
 
     void insertPatternData(Pattern pattern){
