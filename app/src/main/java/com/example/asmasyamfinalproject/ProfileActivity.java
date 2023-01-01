@@ -2,8 +2,8 @@ package com.example.asmasyamfinalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -14,33 +14,33 @@ import com.example.asmasyamfinalproject.databinding.ActivityProfileBinding;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ActivityProfileBinding binding ;
+    ActivityProfileBinding binding;
 
-    GameViewModule module ;
-    int age ;
-    String Age ;
+    GameViewModule module;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        module = new ViewModelProvider(this).get(GameViewModule.class);
 
-        module.getALlUsers().observe(this, new Observer<List<DataOfUsers>>() {
-            @SuppressLint("ResourceType")
+         module.getALlUsers().observe(this, new Observer<List<DataOfUsers>>() {
             @Override
             public void onChanged(List<DataOfUsers> dataOfUsers) {
 
                 for (int i = 0; i < dataOfUsers.size(); i++) {
 
+                   int UsersId = dataOfUsers.get(i).getUsersId();
                    String UserName = dataOfUsers.get(i).getUserName();
                    String Email = dataOfUsers.get(i).getEmail();
-                   Date DateOfBirth = dataOfUsers.get(i).getDateOfBirth();
+                   String DateOfBirth = dataOfUsers.get(i).getDateOfBirth();
                    String Gender = dataOfUsers.get(i).getGender();
                    String Countries = dataOfUsers.get(i).getCountry();
 
@@ -58,10 +58,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                     // radioButton.setText(gender);
 
-                    binding.score.setText(Score);
-                    binding.gameCount.setText(CountGame);
-                    binding.rightGameCount.setText(RightGameCount);
-                    binding.wrongGameCount.setText(WrongGameCount);
+                    binding.score.setText(String.valueOf(Score));
+                    binding.gameCount.setText(String.valueOf(CountGame));
+                    binding.rightGameCount.setText(String.valueOf(RightGameCount));
+                    binding.wrongGameCount.setText(String.valueOf(WrongGameCount));
                 }
 
             }
@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
-                                binding.dateOfBirth.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                                binding.dateOfBirth.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                               /*  int year1 = Calendar.YEAR;
                                 if (year <= year1){
@@ -90,7 +90,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 }*/
 
 
-                               // int day = Calendar.DAY_OF_MONTH;
+                                // int day = Calendar.DAY_OF_MONTH;
                                 // int month = Calendar.MONTH;
 
 
@@ -106,7 +106,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        binding.saveButton.setOnClickListener(new View.OnClickListener() {
+        //بدي احط هنا بدل  Update <- insert  لانو عمل انسيرت في Home
+
+       binding.saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -116,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     String UserName = binding.userName.getText().toString();
                     String Email = binding.email.getText().toString();
-                    Date DateOfBirth = (Date) binding.dateOfBirth.getText();
+                    String DateOfBirth = binding.dateOfBirth.getText().toString();
 
 
                     int gender = binding.radioGroup.getCheckedRadioButtonId();

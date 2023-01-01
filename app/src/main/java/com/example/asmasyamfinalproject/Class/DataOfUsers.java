@@ -15,7 +15,7 @@ public class DataOfUsers {
 
     String userName ;
     String email ;
-    Date dateOfBirth ;
+    String dateOfBirth ;
     String gender ;
     String country ;
 
@@ -25,7 +25,7 @@ public class DataOfUsers {
     int wrongGameCount ;
 
     public DataOfUsers(int usersId, String userName, String email,
-                       Date dateOfBirth, String gender, String country, int score, int countGame,
+                       String dateOfBirth, String gender, String country, int score, int countGame,
                        int rightGameCount, int wrongGameCount) {
         this.usersId = usersId;
         this.userName = userName;
@@ -67,11 +67,11 @@ public class DataOfUsers {
         this.email = email;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
