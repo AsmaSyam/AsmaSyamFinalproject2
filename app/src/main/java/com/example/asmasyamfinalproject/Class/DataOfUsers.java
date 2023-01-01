@@ -7,7 +7,6 @@ import androidx.room.TypeConverters;
 import java.util.Date;
 
 @Entity
-@TypeConverters({DataConverter.class})
 public class DataOfUsers {
 
     @PrimaryKey

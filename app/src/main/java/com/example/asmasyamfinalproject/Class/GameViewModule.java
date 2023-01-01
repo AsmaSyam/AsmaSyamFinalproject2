@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -59,6 +61,11 @@ public class GameViewModule extends AndroidViewModel {
 
         repository.insertUsersData(dataOfUsers);
 
+    }
+
+    public void updateUsersData(DataOfUsers dataOfUsers){
+
+        repository.updateUsersData(dataOfUsers);
     }
 
 

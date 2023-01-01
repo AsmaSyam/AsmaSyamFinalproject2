@@ -151,7 +151,7 @@
 
             android:background="@drawable/shape_to_profile" />
 
-        <TextView
+        .getText()<TextView
             android:id="@+id/gameCount"
             android:layout_width="100dp"
             android:layout_height="50dp"

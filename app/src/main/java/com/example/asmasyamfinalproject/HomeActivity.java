@@ -36,7 +36,8 @@ public class HomeActivity extends AppCompatActivity {
         String Date = (DayOfMonth+"/"+Month+"/"+Year);
 
         vm.insertUsersData(new DataOfUsers(1 , "User1" , "User1@gmail.com" ,
-                 "23/2/2003" , "Mail" , "Palestine" , 0 ,0 ,0 ,0));
+                 "23/2/2003" , "Male" , "Palestine" , 0 ,0 ,0 ,0));
+
 
 
         vm.getAllQuestions().observe(this, new Observer<List<QuestionData>>() {

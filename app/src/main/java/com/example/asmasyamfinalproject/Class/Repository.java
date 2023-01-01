@@ -5,7 +5,9 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 
 import com.example.asmasyamfinalproject.Dao.LevelDao;
@@ -79,6 +81,16 @@ public class Repository {
             @Override
             public void run() {
                 usersDao.insertUsersData(dataOfUsers);
+            }
+        });
+    }
+
+    void updateUsersData(DataOfUsers dataOfUsers){
+
+        GameDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                usersDao.updateUsersData(dataOfUsers);
             }
         });
     }

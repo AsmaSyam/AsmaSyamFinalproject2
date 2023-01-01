@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,7 +28,10 @@ public class SplashActivity extends AppCompatActivity {
     ActivitySplashBinding binding ;
     GameViewModule module ;
 
-    //boolean first = false ;
+    boolean isFirstInsertInRoom = false ;
+
+    SharedPreferences sp  ;
+    SharedPreferences.Editor editor ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,45 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       // if(first == false){
-        //}
+
+        sp = getSharedPreferences("as" , MODE_PRIVATE) ;
+        editor = sp.edit() ;
+
+        module = new ViewModelProvider(this).get(GameViewModule.class);
+
+        String fileName = readFromAssets("jsonData.json");
+
+        // Log.d("levelTest", "onCreate: created");
+
+       /* if(isFirstInsertInRoom = sp.getBoolean("isFirstInsertInRoom" , true)){
+
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    startActivity(new Intent(SplashActivity.this , HomeActivity.class));
+                    finish();
+                }
+            }, 2000);
+
+        }else {
+
+            parseTheJson(fileName);
+            parseTheJsonInsertQuestion(fileName);
+            isFirstInsertInRoom = true ;
+
+            editor.putBoolean("isFirstInsertInRoom" , isFirstInsertInRoom);
+            editor.commit();
+
+
+
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    startActivity(new Intent(SplashActivity.this , HomeActivity.class));
+                    finish();
+                }
+            }, 2000);
+        }*/
 
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -46,15 +87,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 2000);
 
-
-        module = new ViewModelProvider(this).get(GameViewModule.class);
-
-        String fileName = readFromAssets("jsonData.json");
-
-        Log.d("levelTest", "onCreate: created");
-
         parseTheJson(fileName);
-
         parseTheJsonInsertQuestion(fileName);
 
 

@@ -7,12 +7,14 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.asmasyamfinalproject.Class.DataOfUsers;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.databinding.ActivityProfileBinding;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 import java.util.List;
 
@@ -53,8 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
                     binding.email.setText(Email);
                     binding.dateOfBirth.setText((CharSequence) DateOfBirth);
 
-                   // int gender = binding.radioGroup.getCheckedRadioButtonId();
-                  //  RadioButton radioButton =findViewById(gender);
+
 
                     // radioButton.setText(gender);
 
@@ -62,6 +63,23 @@ public class ProfileActivity extends AppCompatActivity {
                     binding.gameCount.setText(String.valueOf(CountGame));
                     binding.rightGameCount.setText(String.valueOf(RightGameCount));
                     binding.wrongGameCount.setText(String.valueOf(WrongGameCount));
+
+                   /* int gender = binding.radioGroup.getCheckedRadioButtonId();
+                    RadioButton radioButton =findViewById(gender);
+                    String radioText = radioButton.getText().toString();
+
+                      switch (gender){
+                        case  R.id.radioMale:
+                            break;
+                        case R.id.radioFemale:
+                    }*/
+
+                    if (Gender.equalsIgnoreCase("Male")){
+                        binding.radioMale.setChecked(true);
+                    }else if (Gender.equalsIgnoreCase("Female")){
+                        binding.radioFemale.setChecked(true);
+                    }
+
                 }
 
             }
@@ -112,9 +130,10 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(binding.userName != null && binding.dateOfBirth != null && binding.email != null && binding.radioGroup != null
-                && binding.countriesSpinner != null && binding.score != null && binding.gameCount != null
-                        && binding.rightGameCount != null && binding.wrongGameCount != null){
+                if(binding.userName.getText() != null && binding.dateOfBirth.getText() != null && binding.email.getText() != null
+                        && binding.radioGroup != null && binding.countriesSpinner.getSelectedItem() != null
+                        && binding.score.getText() != null && binding.gameCount.getText() != null
+                        && binding.rightGameCount.getText() != null && binding.wrongGameCount.getText() != null){
 
                     String UserName = binding.userName.getText().toString();
                     String Email = binding.email.getText().toString();
@@ -125,6 +144,7 @@ public class ProfileActivity extends AppCompatActivity {
                     RadioButton radioButton =findViewById(gender);
 
 
+
                     String TextGender = radioButton.getText().toString();
                     String Countries = binding.countriesSpinner.getSelectedItem().toString();
 
@@ -133,9 +153,12 @@ public class ProfileActivity extends AppCompatActivity {
                     int RightGameCount = Integer.parseInt(binding.rightGameCount.getText().toString());
                     int WrongGameCount = Integer.parseInt(binding.wrongGameCount.getText().toString());
 
-                    module.insertUsersData(new DataOfUsers(1 ,UserName , Email , DateOfBirth ,TextGender , Countries , Score ,
+                    module.updateUsersData(new DataOfUsers(1 ,UserName , Email , DateOfBirth ,TextGender , Countries , Score ,
                             GameCount , RightGameCount , WrongGameCount));
                     // هنا رح اخزن في الروم داتابيز
+                }
+                else {
+                    Toast.makeText(ProfileActivity.this, "Insert all of the data", Toast.LENGTH_SHORT).show();
                 }
 
 
