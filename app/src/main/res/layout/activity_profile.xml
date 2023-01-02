@@ -62,7 +62,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_to_profile"
             android:checked="false"
-            android:text="  Male    "
+            android:text="Male"
             android:textSize="20dp" />
 
         <RadioButton
@@ -73,7 +73,7 @@
             android:checked="false"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
-            android:text="   Female  "
+            android:text="Female"
             android:textSize="20dp" />
     </RadioGroup>
 
@@ -151,7 +151,7 @@
 
             android:background="@drawable/shape_to_profile" />
 
-        .getText()<TextView
+        <TextView
             android:id="@+id/gameCount"
             android:layout_width="100dp"
             android:layout_height="50dp"

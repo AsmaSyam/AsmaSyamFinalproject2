@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         GameViewModule vm = new ViewModelProvider(this).get(GameViewModule.class);
 
         Calendar now = Calendar.getInstance();

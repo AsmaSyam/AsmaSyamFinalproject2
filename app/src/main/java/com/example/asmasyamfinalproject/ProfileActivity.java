@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -32,6 +33,23 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         module = new ViewModelProvider(this).get(GameViewModule.class);
+
+       // للتاكد من حجم الأري والبيانات يلي بداخلها
+        module.getALlUsers().observe(this, new Observer<List<DataOfUsers>>() {
+            @Override
+            public void onChanged(List<DataOfUsers> dataOfUsers) {
+                for (int i = 0; i < dataOfUsers.size(); i++) {
+                    Log.d("dataOfUsersSize", "onChanged: " + dataOfUsers.size());
+                    Log.d("UsersId", "onChanged: " + dataOfUsers.get(i).getUsersId());
+                    Log.d("UserName", "onChanged: " + dataOfUsers.get(i).getUserName());
+                    Log.d("Gender", "onChanged: " + dataOfUsers.get(i).getGender());
+                    Log.d("Email", "onChanged: " + dataOfUsers.get(i).getEmail());
+                    Log.d("DateOfBirth", "onChanged: " + dataOfUsers.get(i).getDateOfBirth());
+                }
+
+            }
+        });
+
 
          module.getALlUsers().observe(this, new Observer<List<DataOfUsers>>() {
             @Override
@@ -131,7 +149,8 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(binding.userName.getText() != null && binding.dateOfBirth.getText() != null && binding.email.getText() != null
-                        && binding.radioGroup != null && binding.countriesSpinner.getSelectedItem() != null
+                        && (binding.radioMale.isChecked() || binding.radioFemale.isChecked())
+                        && binding.countriesSpinner.getSelectedItem() != null
                         && binding.score.getText() != null && binding.gameCount.getText() != null
                         && binding.rightGameCount.getText() != null && binding.wrongGameCount.getText() != null){
 
@@ -143,9 +162,8 @@ public class ProfileActivity extends AppCompatActivity {
                     int gender = binding.radioGroup.getCheckedRadioButtonId();
                     RadioButton radioButton =findViewById(gender);
 
-
-
                     String TextGender = radioButton.getText().toString();
+
                     String Countries = binding.countriesSpinner.getSelectedItem().toString();
 
                     int Score = Integer.parseInt(binding.score.getText().toString());
@@ -155,7 +173,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     module.updateUsersData(new DataOfUsers(1 ,UserName , Email , DateOfBirth ,TextGender , Countries , Score ,
                             GameCount , RightGameCount , WrongGameCount));
-                    // هنا رح اخزن في الروم داتابيز
+                    // هنا رح احدث على الروم داتابيز
                 }
                 else {
                     Toast.makeText(ProfileActivity.this, "Insert all of the data", Toast.LENGTH_SHORT).show();
