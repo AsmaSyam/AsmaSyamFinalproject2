@@ -40,56 +40,45 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        sp = getSharedPreferences("as" , MODE_PRIVATE) ;
-        editor = sp.edit() ;
-
         module = new ViewModelProvider(this).get(GameViewModule.class);
 
         String fileName = readFromAssets("jsonData.json");
 
         // Log.d("levelTest", "onCreate: created");
 
-       /* if(isFirstInsertInRoom = sp.getBoolean("isFirstInsertInRoom" , true)){
+        sp = getSharedPreferences("as" , MODE_PRIVATE) ;
+        editor = sp.edit() ;
 
-            new Handler().postDelayed(new Runnable(){
+        boolean isFirst =  sp.getBoolean("isFirstInsertInRoom" , false);
+
+        if(isFirst == true) {
+
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(SplashActivity.this , HomeActivity.class));
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                     finish();
                 }
             }, 2000);
-
         }else {
 
             parseTheJson(fileName);
             parseTheJsonInsertQuestion(fileName);
+
             isFirstInsertInRoom = true ;
 
             editor.putBoolean("isFirstInsertInRoom" , isFirstInsertInRoom);
             editor.commit();
 
-
-
-            new Handler().postDelayed(new Runnable(){
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(SplashActivity.this , HomeActivity.class));
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                     finish();
                 }
             }, 2000);
-        }*/
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashActivity.this , HomeActivity.class));
-                finish();
-            }
-        }, 2000);
-
-        parseTheJson(fileName);
-        parseTheJsonInsertQuestion(fileName);
-
+        }
 
 
     }
