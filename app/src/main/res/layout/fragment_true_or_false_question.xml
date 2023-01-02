@@ -13,6 +13,42 @@
         android:src="@drawable/images__1_" />
 
     <TextView
+        android:id="@+id/levelNo"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_to_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/levelScore"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_to_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/levelNo"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/puzzleNo"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_to_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/levelScore"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <TextView
         android:id="@+id/text_question"
         android:layout_width="350dp"
         android:layout_height="50dp"
@@ -30,7 +66,7 @@
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="80dp"
         android:background="@drawable/shape_style"
         android:backgroundTint="#15DD1D"
         android:text="True"
@@ -43,7 +79,7 @@
         android:id="@+id/falseAnswer"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/shape_style"
         android:backgroundTint="#EA1B1B"

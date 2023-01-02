@@ -15,9 +15,13 @@ public class Complete_Question_Fragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "title";
+    private static final String ARG_PARAM7 = "levelNo";
+    private static final String ARG_PARAM8 = "puzzleNo";
 
     // TODO: Rename and change types of parameters
     private String title;
+    private int levelNo;
+    private int puzzleNo;
 
     public Complete_Question_Fragment() {
         // Required empty public constructor
@@ -25,10 +29,12 @@ public class Complete_Question_Fragment extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static Complete_Question_Fragment newInstance(String title ,int patternId) {
+    public static Complete_Question_Fragment newInstance(String title ,int patternId , int levelNo , int puzzleNo) {
         Complete_Question_Fragment fragment = new Complete_Question_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, title);
+        args.putInt(ARG_PARAM7, levelNo);
+        args.putInt(ARG_PARAM8, puzzleNo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,6 +44,8 @@ public class Complete_Question_Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             title = getArguments().getString(ARG_PARAM1);
+            levelNo = getArguments().getInt(ARG_PARAM7);
+            puzzleNo = getArguments().getInt(ARG_PARAM8);
         }
     }
 
@@ -49,6 +57,8 @@ public class Complete_Question_Fragment extends Fragment {
         FragmentCompleteQuestionBinding binding = FragmentCompleteQuestionBinding.inflate(inflater , container , false);
 
         binding.textQuestion.setText(title);
+        binding.levelNo.setText("LevelNo : "+String.valueOf(levelNo));
+        binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
 
         return binding.getRoot();
     }

@@ -33,16 +33,19 @@
             android:layout_marginTop="10dp"
             android:background="#E8E3E3"
             android:textColor="#827717"
+            android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"
             />
 
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="34dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/textViewPoints"/>
+            android:id="@+id/textViewPoints"
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 

@@ -22,6 +22,8 @@ public class ChooseFragment extends Fragment {
     private static final String ARG_PARAM4 = "answer3";
     private static final String ARG_PARAM5 = "answer4";
     private static final String ARG_PARAM6 = "patternId";
+    private static final String ARG_PARAM7 = "levelNo";
+    private static final String ARG_PARAM8 = "puzzleNo";
 
     // TODO: Rename and change types of parameters
     private String question;
@@ -30,13 +32,16 @@ public class ChooseFragment extends Fragment {
     private String answer3;
     private String answer4;
     private int patternId;
+    private int levelNo;
+    private int puzzleNo;
 
     public ChooseFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static ChooseFragment newInstance(String question, String answer1 , String answer2 , String answer3 , String answer4 , int patternId) {
+    public static ChooseFragment newInstance(String question, String answer1 , String answer2
+            , String answer3 , String answer4 , int patternId , int levelNo , int puzzleNo) {
         ChooseFragment fragment = new ChooseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, question);
@@ -45,6 +50,8 @@ public class ChooseFragment extends Fragment {
         args.putString(ARG_PARAM4, answer3);
         args.putString(ARG_PARAM5, answer4);
         args.putInt(ARG_PARAM6, patternId);
+        args.putInt(ARG_PARAM7, levelNo);
+        args.putInt(ARG_PARAM8, puzzleNo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,6 +66,8 @@ public class ChooseFragment extends Fragment {
             answer3 = getArguments().getString(ARG_PARAM4);
             answer4 = getArguments().getString(ARG_PARAM5);
             patternId = getArguments().getInt(ARG_PARAM6);
+            levelNo = getArguments().getInt(ARG_PARAM7);
+            puzzleNo = getArguments().getInt(ARG_PARAM8);
 
             Log.d("question", "onCreate: " + question);
         }
@@ -76,6 +85,8 @@ public class ChooseFragment extends Fragment {
         binding.buttonAnswer2.setText(answer2);
         binding.buttonAnswer3.setText(answer3);
         binding.buttonAnswer4.setText(answer4);
+        binding.levelNo.setText("LevelNo : "+String.valueOf(levelNo));
+        binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
 
         return binding.getRoot();
     }

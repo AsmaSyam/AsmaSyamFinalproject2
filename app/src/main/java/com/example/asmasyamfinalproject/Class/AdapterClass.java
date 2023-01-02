@@ -20,7 +20,6 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.DataViewHold
     ArrayList<DataOfLevel> arrayList ;
     Context context ;
     Listener listener ;
-    int pos ;
 
     public AdapterClass(ArrayList<DataOfLevel> arrayList , Context context , Listener listener) {
         this.arrayList = arrayList;
@@ -40,8 +39,8 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.DataViewHold
     public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
 
         int pos = position ;
-        holder.textViewLevel.setText("مرحلة" + arrayList.get(position).getLevelNo());
-        holder.textViewPoints.setText("النقاط المطلوبة" + arrayList.get(position).getUnlockPoints());
+        holder.textViewLevel.setText("مرحلة " + arrayList.get(position).getLevelNo());
+        holder.textViewPoints.setText(" النقاط المطلوبة " + arrayList.get(position).getUnlockPoints());
         holder.imageViewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
