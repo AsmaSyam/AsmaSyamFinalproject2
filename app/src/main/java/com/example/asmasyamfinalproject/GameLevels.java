@@ -35,6 +35,7 @@ public class GameLevels extends AppCompatActivity {
     String answer4 ;
     int patternId ;
     int puzzleNo ;
+    String trueAnswer ;
 
     int levelNo ;
 
@@ -74,6 +75,7 @@ public class GameLevels extends AppCompatActivity {
                             answer4 = questionData.get(i).getAnswer4();
                             patternId = questionData.get(i).getPatternId();
                             puzzleNo = questionData.size();
+                            trueAnswer = questionData.get(i).getTrueAnswer();
 
                             Log.d("title", "onChanged: " + title);
                             Log.d("answer1", "onChanged: " + answer1);
@@ -84,15 +86,15 @@ public class GameLevels extends AppCompatActivity {
 
                             if(patternId == 2){
                                 fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2
-                                        , answer3 , answer4 , patternId , levelNo , puzzleNo));
+                                        , answer3 , answer4 , patternId , levelNo , puzzleNo , trueAnswer));
                                 Log.d("title", "onCreate: " +title);
                             }
                             else if(patternId == 3){
-                                fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId , levelNo , puzzleNo));
+                                fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId , levelNo , puzzleNo , trueAnswer));
                             }
 
                             else if(patternId == 1){
-                                fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId  , levelNo , puzzleNo));
+                                fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId  , levelNo , puzzleNo , trueAnswer));
                             }
 
                             QuestionAdapter adapter = new QuestionAdapter(GameLevels.this , fragmentArrayList);
@@ -111,6 +113,10 @@ public class GameLevels extends AppCompatActivity {
 
 
                 });
+
+           //     ChooseFragment fragment = new ChooseFragment();
+
+
             }
 
 

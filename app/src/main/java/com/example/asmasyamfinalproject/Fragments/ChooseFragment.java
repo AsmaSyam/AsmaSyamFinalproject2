@@ -8,8 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.asmasyamfinalproject.R;
+import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.databinding.FragmentChooseBinding;
 
 
@@ -24,6 +25,7 @@ public class ChooseFragment extends Fragment {
     private static final String ARG_PARAM6 = "patternId";
     private static final String ARG_PARAM7 = "levelNo";
     private static final String ARG_PARAM8 = "puzzleNo";
+    private static final String ARG_PARAM9 = "trueAnswer";
 
     // TODO: Rename and change types of parameters
     private String question;
@@ -34,6 +36,9 @@ public class ChooseFragment extends Fragment {
     private int patternId;
     private int levelNo;
     private int puzzleNo;
+    private String trueAnswer;
+    int Score = 0;
+
 
     public ChooseFragment() {
         // Required empty public constructor
@@ -41,7 +46,7 @@ public class ChooseFragment extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static ChooseFragment newInstance(String question, String answer1 , String answer2
-            , String answer3 , String answer4 , int patternId , int levelNo , int puzzleNo) {
+            , String answer3 , String answer4 , int patternId , int levelNo , int puzzleNo , String trueAnswer) {
         ChooseFragment fragment = new ChooseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, question);
@@ -52,6 +57,7 @@ public class ChooseFragment extends Fragment {
         args.putInt(ARG_PARAM6, patternId);
         args.putInt(ARG_PARAM7, levelNo);
         args.putInt(ARG_PARAM8, puzzleNo);
+        args.putString(ARG_PARAM9, trueAnswer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,6 +74,7 @@ public class ChooseFragment extends Fragment {
             patternId = getArguments().getInt(ARG_PARAM6);
             levelNo = getArguments().getInt(ARG_PARAM7);
             puzzleNo = getArguments().getInt(ARG_PARAM8);
+            trueAnswer = getArguments().getString(ARG_PARAM9);
 
             Log.d("question", "onCreate: " + question);
         }
@@ -87,6 +94,61 @@ public class ChooseFragment extends Fragment {
         binding.buttonAnswer4.setText(answer4);
         binding.levelNo.setText("LevelNo : "+String.valueOf(levelNo));
         binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
+        binding.levelScore.setText("Score : "+Score);
+
+        binding.buttonAnswer1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.buttonAnswer1.getText().toString().equals(trueAnswer)){
+
+                    // هعمل هنا اذا البوينت هيا المطلوب او غيرو بزود قيمته على Score
+                    Score = Score + 2 ;
+                    binding.levelScore.setText("Score : "+Score);
+                    Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        binding.buttonAnswer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.buttonAnswer2.getText().toString().equals(trueAnswer)){
+
+                    Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        binding.buttonAnswer3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.buttonAnswer3.getText().toString().equals(trueAnswer)){
+
+                    Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        binding.buttonAnswer4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.buttonAnswer4.getText().toString().equals(trueAnswer)){
+
+                    Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         return binding.getRoot();
     }

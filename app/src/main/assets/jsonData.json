@@ -2,8 +2,7 @@
   {
   "level_no": 1,
   "unlock_points": 0,
-  "questions": [
-    {
+  "questions": [{
     "id": 1,
     "title": "عدد أحرف اللغة الانجليزية 28 حرف",
     "answer_1": "",

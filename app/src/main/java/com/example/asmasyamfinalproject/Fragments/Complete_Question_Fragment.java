@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.asmasyamfinalproject.databinding.FragmentCompleteQuestionBinding;
 
@@ -17,11 +18,16 @@ public class Complete_Question_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "title";
     private static final String ARG_PARAM7 = "levelNo";
     private static final String ARG_PARAM8 = "puzzleNo";
+    private static final String ARG_PARAM9 = "trueAnswer";
+
 
     // TODO: Rename and change types of parameters
     private String title;
     private int levelNo;
     private int puzzleNo;
+    private String trueAnswer;
+    int Score = 0 ;
+
 
     public Complete_Question_Fragment() {
         // Required empty public constructor
@@ -29,12 +35,13 @@ public class Complete_Question_Fragment extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static Complete_Question_Fragment newInstance(String title ,int patternId , int levelNo , int puzzleNo) {
+    public static Complete_Question_Fragment newInstance(String title ,int patternId , int levelNo , int puzzleNo , String trueAnswer) {
         Complete_Question_Fragment fragment = new Complete_Question_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, title);
         args.putInt(ARG_PARAM7, levelNo);
         args.putInt(ARG_PARAM8, puzzleNo);
+        args.putString(ARG_PARAM9, trueAnswer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,6 +53,7 @@ public class Complete_Question_Fragment extends Fragment {
             title = getArguments().getString(ARG_PARAM1);
             levelNo = getArguments().getInt(ARG_PARAM7);
             puzzleNo = getArguments().getInt(ARG_PARAM8);
+            trueAnswer = getArguments().getString(ARG_PARAM9);
         }
     }
 
@@ -59,6 +67,18 @@ public class Complete_Question_Fragment extends Fragment {
         binding.textQuestion.setText(title);
         binding.levelNo.setText("LevelNo : "+String.valueOf(levelNo));
         binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
+        binding.levelScore.setText("Score : "+Score);
+
+
+        if(binding.answer.getText().toString().equals(trueAnswer)){
+
+            Score = Score + 5 ;
+            binding.levelScore.setText("Score : "+Score);
+            Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+        }
 
         return binding.getRoot();
     }
