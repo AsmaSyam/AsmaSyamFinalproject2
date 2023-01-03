@@ -6,10 +6,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.asmasyamfinalproject.Class.DataOfLevel;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.Class.QuestionAdapter;
 import com.example.asmasyamfinalproject.Class.QuestionData;
@@ -21,10 +21,14 @@ import com.example.asmasyamfinalproject.databinding.ActivityGamelevelsBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameLevels extends AppCompatActivity {
+public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSendData
+        , Complete_Question_Fragment.OnSendData , TrueOrFalseQuestion.OnSendData{
 
     ActivityGamelevelsBinding binding ;
     GameViewModule module ;
+
+    SharedPreferences sp  ;
+    SharedPreferences.Editor editor ;
 
     //ArrayList<QuestionData> arrayList ;
 
@@ -36,6 +40,7 @@ public class GameLevels extends AppCompatActivity {
     int patternId ;
     int puzzleNo ;
     String trueAnswer ;
+    int points ;
 
     int levelNo ;
 
@@ -46,6 +51,11 @@ public class GameLevels extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGamelevelsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.viewPager.setCurrentItem(binding.viewPager.getCurrentItem()+1);
+
+        sp = getSharedPreferences("as" , MODE_PRIVATE) ;
+        editor = sp.edit() ;
 
         fragmentArrayList  = new ArrayList<>();
 
@@ -76,6 +86,7 @@ public class GameLevels extends AppCompatActivity {
                             patternId = questionData.get(i).getPatternId();
                             puzzleNo = questionData.size();
                             trueAnswer = questionData.get(i).getTrueAnswer();
+                            points = questionData.get(i).getPoints();
 
                             Log.d("title", "onChanged: " + title);
                             Log.d("answer1", "onChanged: " + answer1);
@@ -86,15 +97,17 @@ public class GameLevels extends AppCompatActivity {
 
                             if(patternId == 2){
                                 fragmentArrayList.add(ChooseFragment.newInstance(title , answer1 , answer2
-                                        , answer3 , answer4 , patternId , levelNo , puzzleNo , trueAnswer));
+                                        , answer3 , answer4 , patternId , levelNo , puzzleNo , trueAnswer , points));
                                 Log.d("title", "onCreate: " +title);
                             }
                             else if(patternId == 3){
-                                fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId , levelNo , puzzleNo , trueAnswer));
+                                fragmentArrayList.add(Complete_Question_Fragment.newInstance(title , patternId , levelNo , puzzleNo
+                                        , trueAnswer , points));
                             }
 
                             else if(patternId == 1){
-                                fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId  , levelNo , puzzleNo , trueAnswer));
+                                fragmentArrayList.add(TrueOrFalseQuestion.newInstance(title , patternId  , levelNo , puzzleNo
+                                        , trueAnswer , points));
                             }
 
                             QuestionAdapter adapter = new QuestionAdapter(GameLevels.this , fragmentArrayList);
@@ -114,11 +127,39 @@ public class GameLevels extends AppCompatActivity {
 
                 });
 
-           //     ChooseFragment fragment = new ChooseFragment();
 
 
             }
 
 
+    @Override
+    public void sendDataChoose(int Score, int gameCount, int rightGameCount, int wrongGameCount) {
+
+        editor.putInt("Score" , Score);
+        editor.putInt("gameCount" , gameCount);
+        editor.putInt("rightGameCount" , rightGameCount);
+        editor.putInt("wrongGameCount" , wrongGameCount);
+        editor.commit();
 
     }
+
+    @Override
+    public void sendDataComplete(int Score, int gameCount, int rightGameCount, int wrongGameCount) {
+
+        editor.putInt("Score" , Score);
+        editor.putInt("gameCount" , gameCount);
+        editor.putInt("rightGameCount" , rightGameCount);
+        editor.putInt("wrongGameCount" , wrongGameCount);
+        editor.commit();
+    }
+
+    @Override
+    public void sendDataTrueOrFalse(int Score, int gameCount, int rightGameCount, int wrongGameCount) {
+
+        editor.putInt("Score" , Score);
+        editor.putInt("gameCount" , gameCount);
+        editor.putInt("rightGameCount" , rightGameCount);
+        editor.putInt("wrongGameCount" , wrongGameCount);
+        editor.commit();
+    }
+}

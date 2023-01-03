@@ -1,7 +1,10 @@
 package com.example.asmasyamfinalproject.Fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -10,12 +13,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.asmasyamfinalproject.Class.GameViewModule;
 import com.example.asmasyamfinalproject.databinding.FragmentChooseBinding;
 
 
 public class ChooseFragment extends Fragment {
 
+   public interface OnSendData{
+        void sendDataChoose(int Score , int gameCount, int rightGameCount , int wrongGameCount);
+    }
+
+    OnSendData onSendData ;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        onSendData = (ChooseFragment.OnSendData) context;
+    }
 
     private static final String ARG_PARAM1 = "question";
     private static final String ARG_PARAM2 = "answer1";
@@ -26,6 +39,7 @@ public class ChooseFragment extends Fragment {
     private static final String ARG_PARAM7 = "levelNo";
     private static final String ARG_PARAM8 = "puzzleNo";
     private static final String ARG_PARAM9 = "trueAnswer";
+    private static final String ARG_PARAM10 = "points";
 
     // TODO: Rename and change types of parameters
     private String question;
@@ -38,6 +52,10 @@ public class ChooseFragment extends Fragment {
     private int puzzleNo;
     private String trueAnswer;
     int Score = 0;
+    int points ;
+    int gameCount  = 0;
+    int rightGameCount = 0 ;
+    int wrongGameCount = 0 ;
 
 
     public ChooseFragment() {
@@ -46,7 +64,7 @@ public class ChooseFragment extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static ChooseFragment newInstance(String question, String answer1 , String answer2
-            , String answer3 , String answer4 , int patternId , int levelNo , int puzzleNo , String trueAnswer) {
+            , String answer3 , String answer4 , int patternId , int levelNo , int puzzleNo , String trueAnswer , int points){
         ChooseFragment fragment = new ChooseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, question);
@@ -58,6 +76,7 @@ public class ChooseFragment extends Fragment {
         args.putInt(ARG_PARAM7, levelNo);
         args.putInt(ARG_PARAM8, puzzleNo);
         args.putString(ARG_PARAM9, trueAnswer);
+        args.putInt(ARG_PARAM10, points);
         fragment.setArguments(args);
         return fragment;
     }
@@ -75,6 +94,7 @@ public class ChooseFragment extends Fragment {
             levelNo = getArguments().getInt(ARG_PARAM7);
             puzzleNo = getArguments().getInt(ARG_PARAM8);
             trueAnswer = getArguments().getString(ARG_PARAM9);
+            points = getArguments().getInt(ARG_PARAM10);
 
             Log.d("question", "onCreate: " + question);
         }
@@ -102,11 +122,17 @@ public class ChooseFragment extends Fragment {
                 if (binding.buttonAnswer1.getText().toString().equals(trueAnswer)){
 
                     // هعمل هنا اذا البوينت هيا المطلوب او غيرو بزود قيمته على Score
-                    Score = Score + 2 ;
+                    Score = Score + points ;
                     binding.levelScore.setText("Score : "+Score);
+                    rightGameCount  = rightGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
 
                 }else {
+                    wrongGameCount  = wrongGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -117,8 +143,16 @@ public class ChooseFragment extends Fragment {
             public void onClick(View view) {
                 if (binding.buttonAnswer2.getText().toString().equals(trueAnswer)){
 
+                    Score = Score + points ;
+                    binding.levelScore.setText("Score : "+Score);
+                    rightGameCount  = rightGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
                 }else {
+                    wrongGameCount  = wrongGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -129,8 +163,16 @@ public class ChooseFragment extends Fragment {
             public void onClick(View view) {
                 if (binding.buttonAnswer3.getText().toString().equals(trueAnswer)){
 
+                    Score = Score + points ;
+                    binding.levelScore.setText("Score : "+Score);
+                    rightGameCount  = rightGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
                 }else {
+                    wrongGameCount  = wrongGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -141,12 +183,32 @@ public class ChooseFragment extends Fragment {
             public void onClick(View view) {
                 if (binding.buttonAnswer4.getText().toString().equals(trueAnswer)){
 
+                    Score = Score + points ;
+                    binding.levelScore.setText("Score : "+Score);
+                    rightGameCount  = rightGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
                 }else {
+                    wrongGameCount  = wrongGameCount + 1 ;
+                    gameCount = gameCount + 1 ;
+                    onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        binding.buttonSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Score = Score - 3 ;
+                onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
+
+
+            }
+        });
+
 
 
 

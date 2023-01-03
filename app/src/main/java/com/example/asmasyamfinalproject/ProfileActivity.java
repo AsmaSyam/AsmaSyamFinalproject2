@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
@@ -12,19 +14,23 @@ import android.widget.Toast;
 
 import com.example.asmasyamfinalproject.Class.DataOfUsers;
 import com.example.asmasyamfinalproject.Class.GameViewModule;
+import com.example.asmasyamfinalproject.Fragments.ChooseFragment;
+import com.example.asmasyamfinalproject.Fragments.Complete_Question_Fragment;
+import com.example.asmasyamfinalproject.Fragments.TrueOrFalseQuestion;
 import com.example.asmasyamfinalproject.databinding.ActivityProfileBinding;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 import java.util.List;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity  {
 
     ActivityProfileBinding binding;
 
     GameViewModule module;
 
+    SharedPreferences sp  ;
+    SharedPreferences.Editor editor ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,12 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         module = new ViewModelProvider(this).get(GameViewModule.class);
+
+        sp = getSharedPreferences("as" , MODE_PRIVATE) ;
+        editor = sp.edit() ;
+
+
+
 
        // للتاكد من حجم الأري والبيانات يلي بداخلها
         module.getALlUsers().observe(this, new Observer<List<DataOfUsers>>() {
@@ -64,16 +76,29 @@ public class ProfileActivity extends AppCompatActivity {
                    String Gender = dataOfUsers.get(i).getGender();
                    String Countries = dataOfUsers.get(i).getCountry();
 
+
                    int Score = dataOfUsers.get(i).getScore();
                    int CountGame = dataOfUsers.get(i).getCountGame();
                    int RightGameCount = dataOfUsers.get(i).getRightGameCount();
                    int WrongGameCount = dataOfUsers.get(i).getWrongGameCount();
 
+                    int score = sp.getInt("Score" , 0);
+                    int gameCount = sp.getInt("gameCount" , 0);
+                    int rightGameCount = sp.getInt("rightGameCount" , 0);
+                    int wrongGameCount = sp.getInt("wrongGameCount" , 0);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            module.updateUsersData(new DataOfUsers(UsersId , UserName , Email , DateOfBirth , Gender ,
+                                    Countries , score  ,gameCount , rightGameCount , wrongGameCount));
+                        }
+                    }, 200);
+
+
                     binding.userName.setText(UserName);
                     binding.email.setText(Email);
-                    binding.dateOfBirth.setText((CharSequence) DateOfBirth);
-
-
+                    binding.dateOfBirth.setText(DateOfBirth);
 
                     // radioButton.setText(gender);
 
@@ -186,4 +211,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
