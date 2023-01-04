@@ -1,7 +1,6 @@
 package com.example.asmasyamfinalproject.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.asmasyamfinalproject.ListenerDialog;
 import com.example.asmasyamfinalproject.databinding.FragmentChooseBinding;
 
 
@@ -20,7 +20,13 @@ public class ChooseFragment extends Fragment {
 
    public interface OnSendData{
         void sendDataChoose(int Score , int gameCount, int rightGameCount , int wrongGameCount);
+        void OnClickSkip();
+       void OnDuration();
     }
+
+    ListenerDialog listenerDialog ;
+
+
 
     OnSendData onSendData ;
 
@@ -28,6 +34,7 @@ public class ChooseFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         onSendData = (ChooseFragment.OnSendData) context;
+        listenerDialog = (ListenerDialog) context;
     }
 
     private static final String ARG_PARAM1 = "question";
@@ -116,6 +123,8 @@ public class ChooseFragment extends Fragment {
         binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
         binding.levelScore.setText("Score : "+Score);
 
+        onSendData.OnDuration();
+
         binding.buttonAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,12 +137,18 @@ public class ChooseFragment extends Fragment {
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialog();
+                    onSendData.OnClickSkip();
+
 
                 }else {
                     wrongGameCount  = wrongGameCount + 1 ;
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialogFalseAnswer();
+                    onSendData.OnClickSkip();
+
                 }
             }
         });
@@ -149,11 +164,20 @@ public class ChooseFragment extends Fragment {
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialog();
+                    onSendData.OnClickSkip();
+
+
                 }else {
                     wrongGameCount  = wrongGameCount + 1 ;
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialogFalseAnswer();
+
+                    onSendData.OnClickSkip();
+
+
                 }
             }
         });
@@ -169,11 +193,18 @@ public class ChooseFragment extends Fragment {
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialog();
+                    onSendData.OnClickSkip();
+
+
                 }else {
                     wrongGameCount  = wrongGameCount + 1 ;
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialogFalseAnswer();
+                    onSendData.OnClickSkip();
+
                 }
             }
         });
@@ -189,11 +220,18 @@ public class ChooseFragment extends Fragment {
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialog();
+                    onSendData.OnClickSkip();
+
+
                 }else {
                     wrongGameCount  = wrongGameCount + 1 ;
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialogFalseAnswer();
+                    onSendData.OnClickSkip();
+
                 }
             }
         });
@@ -205,6 +243,7 @@ public class ChooseFragment extends Fragment {
                 Score = Score - 3 ;
                 onSendData.sendDataChoose(Score , gameCount , rightGameCount , wrongGameCount);
 
+                onSendData.OnClickSkip();
 
             }
         });

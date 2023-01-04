@@ -50,9 +50,9 @@
 
     <TextView
         android:id="@+id/text_question"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="300dp"
         android:background="@drawable/shape_style"
         android:backgroundTint="#F3AB42"

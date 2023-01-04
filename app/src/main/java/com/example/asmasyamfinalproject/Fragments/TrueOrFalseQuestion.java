@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.asmasyamfinalproject.R;
-import com.example.asmasyamfinalproject.databinding.FragmentChooseBinding;
+import com.example.asmasyamfinalproject.ListenerDialog;
 import com.example.asmasyamfinalproject.databinding.FragmentTrueOrFalseQuestionBinding;
 
 
@@ -20,7 +19,14 @@ public class TrueOrFalseQuestion extends Fragment {
 
     public interface OnSendData{
         void sendDataTrueOrFalse(int Score , int gameCount, int rightGameCount , int wrongGameCount);
+        void OnClickSkip();
+        void OnDuration();
+
     }
+
+    ListenerDialog listenerDialog ;
+
+
 
     OnSendData onSendData ;
 
@@ -28,6 +34,7 @@ public class TrueOrFalseQuestion extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         onSendData = (TrueOrFalseQuestion.OnSendData) context;
+        listenerDialog = (ListenerDialog) context;
     }
 
     private static final String ARG_PARAM1 = "title";
@@ -93,6 +100,8 @@ public class TrueOrFalseQuestion extends Fragment {
         binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
         binding.levelScore.setText("Score : "+Score);
 
+        onSendData.OnDuration();
+
         binding.falseAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,12 +113,18 @@ public class TrueOrFalseQuestion extends Fragment {
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataTrueOrFalse(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                    onSendData.OnClickSkip();
+                    listenerDialog.onShowDialog();
+
 
                 }else {
                     wrongGameCount  = wrongGameCount + 1 ;
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataTrueOrFalse(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialogFalseAnswer();
+                    onSendData.OnClickSkip();
+
                 }
             }
         });
@@ -126,11 +141,18 @@ public class TrueOrFalseQuestion extends Fragment {
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataTrueOrFalse(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+                    onSendData.OnClickSkip();
+                    listenerDialog.onShowDialog();
+
+
                 }else {
                     wrongGameCount  = wrongGameCount + 1 ;
                     gameCount = gameCount + 1 ;
                     onSendData.sendDataTrueOrFalse(Score , gameCount , rightGameCount , wrongGameCount);
                     Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+                    listenerDialog.onShowDialogFalseAnswer();
+                    onSendData.OnClickSkip();
+
                 }
             }
         });
@@ -141,6 +163,8 @@ public class TrueOrFalseQuestion extends Fragment {
 
                 Score = Score - 3 ;
                 onSendData.sendDataTrueOrFalse(Score , gameCount , rightGameCount , wrongGameCount);
+
+                onSendData.OnClickSkip();
 
             }
         });

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.example.asmasyamfinalproject.Class.GameViewModule;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSendData
-        , Complete_Question_Fragment.OnSendData , TrueOrFalseQuestion.OnSendData{
+        , Complete_Question_Fragment.OnSendData , TrueOrFalseQuestion.OnSendData , ListenerDialog{
 
     ActivityGamelevelsBinding binding ;
     GameViewModule module ;
@@ -41,6 +42,7 @@ public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSe
     int puzzleNo ;
     String trueAnswer ;
     int points ;
+    String hint ;
 
     int levelNo ;
 
@@ -52,7 +54,8 @@ public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSe
         binding = ActivityGamelevelsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.viewPager.setCurrentItem(binding.viewPager.getCurrentItem()+1);
+        binding.viewPager.setUserInputEnabled(false);
+
 
         sp = getSharedPreferences("as" , MODE_PRIVATE) ;
         editor = sp.edit() ;
@@ -87,6 +90,7 @@ public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSe
                             puzzleNo = questionData.size();
                             trueAnswer = questionData.get(i).getTrueAnswer();
                             points = questionData.get(i).getPoints();
+                            hint = questionData.get(i).getHint();
 
                             Log.d("title", "onChanged: " + title);
                             Log.d("answer1", "onChanged: " + answer1);
@@ -129,6 +133,8 @@ public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSe
 
 
 
+
+
             }
 
 
@@ -141,6 +147,23 @@ public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSe
         editor.putInt("wrongGameCount" , wrongGameCount);
         editor.commit();
 
+    }
+
+    @Override
+    public void OnClickSkip() {
+        binding.viewPager.setCurrentItem(binding.viewPager.getCurrentItem()+1);
+
+    }
+
+    @Override
+    public void OnDuration() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                binding.viewPager.setCurrentItem(binding.viewPager.getCurrentItem()+1);
+
+            }
+        }, 5000);
     }
 
     @Override
@@ -161,5 +184,18 @@ public class GameLevels extends AppCompatActivity implements ChooseFragment.OnSe
         editor.putInt("rightGameCount" , rightGameCount);
         editor.putInt("wrongGameCount" , wrongGameCount);
         editor.commit();
+    }
+
+
+    @Override
+    public void onShowDialog() {
+        DialogFragment dialogFragment = DialogFragment.newInstance(hint);
+        dialogFragment.show(getSupportFragmentManager() , "TrueAnswer");
+    }
+
+    @Override
+    public void onShowDialogFalseAnswer() {
+        DialogFragmentFalseAnswer dialogFragmentFalseAnswer = DialogFragmentFalseAnswer.newInstance(hint);
+        dialogFragmentFalseAnswer.show(getSupportFragmentManager() , "FalseAnswer");
     }
 }

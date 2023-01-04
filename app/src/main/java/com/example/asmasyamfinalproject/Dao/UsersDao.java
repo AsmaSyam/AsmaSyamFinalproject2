@@ -2,6 +2,7 @@ package com.example.asmasyamfinalproject.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -21,6 +22,9 @@ public interface UsersDao {
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void updateUsersData(DataOfUsers dataOfUsers);
+
+    @Delete
+    void deleteUsersData(DataOfUsers dataOfUsers);
 
     @Query("select * from DataOfUsers")
     LiveData<List<DataOfUsers>> getALlUsers();

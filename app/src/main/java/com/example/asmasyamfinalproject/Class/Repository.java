@@ -4,6 +4,7 @@ package com.example.asmasyamfinalproject.Class;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -95,6 +96,18 @@ public class Repository {
         });
     }
 
+
+
+
+    void deleteUsersData(DataOfUsers dataOfUsers){
+
+        GameDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                usersDao.deleteUsersData(dataOfUsers);
+            }
+        });
+    }
 
 
     void insertPatternData(Pattern pattern){

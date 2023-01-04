@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.asmasyamfinalproject.ListenerDialog;
 import com.example.asmasyamfinalproject.databinding.FragmentCompleteQuestionBinding;
 
 
@@ -18,7 +19,13 @@ public class Complete_Question_Fragment extends Fragment {
 
     public interface OnSendData{
         void sendDataComplete(int Score , int gameCount, int rightGameCount , int wrongGameCount);
+        void OnClickSkip();
+        void OnDuration();
+
     }
+
+    ListenerDialog listenerDialog ;
+
 
       OnSendData onSendData ;
 
@@ -26,6 +33,7 @@ public class Complete_Question_Fragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         onSendData = (Complete_Question_Fragment.OnSendData) context;
+        listenerDialog = (ListenerDialog) context;
     }
 
     private static final String ARG_PARAM1 = "title";
@@ -91,6 +99,8 @@ public class Complete_Question_Fragment extends Fragment {
         binding.puzzleNo.setText("PuzzleNo : "+String.valueOf(puzzleNo));
         binding.levelScore.setText("Score : "+Score);
 
+        onSendData.OnDuration();
+
 
         if(binding.answer.getText().toString().equals(trueAnswer)){
 
@@ -100,12 +110,18 @@ public class Complete_Question_Fragment extends Fragment {
             gameCount = gameCount + 1 ;
             onSendData.sendDataComplete(Score , gameCount ,rightGameCount ,wrongGameCount);
             Toast.makeText(getContext(), "True Answer", Toast.LENGTH_SHORT).show();
+            listenerDialog.onShowDialog();
+            onSendData.OnClickSkip();
+
 
         }else {
             wrongGameCount  = wrongGameCount + 1 ;
             gameCount = gameCount + 1 ;
             onSendData.sendDataComplete(Score , gameCount ,rightGameCount ,wrongGameCount);
             Toast.makeText(getContext(), "False Answer", Toast.LENGTH_SHORT).show();
+            listenerDialog.onShowDialogFalseAnswer();
+            onSendData.OnClickSkip();
+
         }
 
         binding.buttonSkip.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +130,8 @@ public class Complete_Question_Fragment extends Fragment {
 
                 Score = Score - 3 ;
                 onSendData.sendDataComplete(Score , gameCount ,rightGameCount ,wrongGameCount);
+
+                onSendData.OnClickSkip();
 
             }
         });
