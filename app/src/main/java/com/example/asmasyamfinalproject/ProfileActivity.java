@@ -87,13 +87,13 @@ public class ProfileActivity extends AppCompatActivity  {
                     int rightGameCount = sp.getInt("rightGameCount" , 0);
                     int wrongGameCount = sp.getInt("wrongGameCount" , 0);
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
+//                    new Handler().postDelayed(new Runnable() {
+  //                      @Override
+    //                    public void run() {
                             module.updateUsersData(new DataOfUsers(UsersId , UserName , Email , DateOfBirth , Gender ,
                                     Countries , score  ,gameCount , rightGameCount , wrongGameCount));
-                        }
-                    }, 200);
+      //                }
+       //             }, 20000);
 
 
                     binding.userName.setText(UserName);
